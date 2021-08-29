@@ -12,14 +12,14 @@ class WelcomeScreen extends StatelessWidget {
           children: <Widget>[
             Expanded(
                 child: Image(
-              image: AssetImage("images/logo.jpg"),
+              image: AssetImage("images/tariq.jpg"),
             ),
-              flex: 9,
+              flex: 7,
             ),
             Expanded(
               child: LoadingIndicator(
-                  indicatorType: Indicator.ballPulse, /// Required, The loading type of the widget
-                  colors: const [Colors.white],       /// Optional, The color collections
+                  indicatorType: Indicator.ballBeat, /// Required, The loading type of the widget
+                  colors: const [Color.fromRGBO(234, 181, 101, 1.0)],       /// Optional, The color collections
               ),
               flex: 1,
             ),

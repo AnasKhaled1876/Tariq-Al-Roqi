@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tariq_al_raqi/filter_screen.dart';
 import 'package:tariq_al_raqi/welcome_screen.dart';
 
 void main() {
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(primaryColor: Colors.black,accentColor: Color.fromRGBO(234, 181, 101, 1.0)),
-      home:WelcomeScreen(),
+      home:FilterScreen(),
     );
   }
 }
