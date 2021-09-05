@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "554955386462",
+    "project_id": "tariq-al-roqi",
+    "storage_bucket": "tariq-al-roqi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:554955386462:android:ba867b8eabdd98fcf88ecf",
+        "android_client_info": {
+          "package_name": "com.AlRoqi.tariq_al_raqi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "554955386462-9vpvb8ggsn4oglm48p6v98laja46flpk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFLSauyGNAmCm5zDICIL9sxJ27o6HvdT4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "554955386462-9vpvb8ggsn4oglm48p6v98laja46flpk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

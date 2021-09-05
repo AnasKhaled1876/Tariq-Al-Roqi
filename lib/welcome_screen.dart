@@ -1,10 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tariq_al_raqi/db_helper.dart';
 import 'package:tariq_al_raqi/filter_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({Key? key}) : super(key: key);
+  final DBHelper _dbHelper = DBHelper();
+
+
   Widget build(BuildContext context) {
+    _dbHelper.getDesigns();
     return Scaffold(
       body: Container(
         color: Colors.black,
@@ -34,7 +40,6 @@ class WelcomeScreen extends StatelessWidget {
                         color: Color.fromRGBO(234, 181, 101, 1.0),
                       ),
                     ),
-
                   ],
                 ),
               ),

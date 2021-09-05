@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tariq_al_raqi/designs_screen.dart';
 import 'package:tariq_al_raqi/row_cards.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tariq_al_raqi/welcome_screen.dart';
@@ -241,7 +242,7 @@ class _FilterScreenState extends State<FilterScreen> {
               setState(() {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) {
-                      return WelcomeScreen();
+                      return DesignsScreen();
                     }));
               });
             },

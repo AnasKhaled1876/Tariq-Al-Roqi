@@ -22,14 +22,16 @@ if (flutterVersionName == null) {
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
     compileSdkVersion 30
 
     defaultConfig {
+        multiDexEnabled true
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.tariq_al_raqi"
+        applicationId "com.AlRoqi.tariq_al_raqi"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
@@ -47,4 +49,10 @@ android {
 
 flutter {
     source '../..'
+}
+
+dependencies {
+    implementation 'com.android.support:multidex:2.0.1'
+    implementation platform('com.google.firebase:firebase-bom:28.4.0')
+
 }

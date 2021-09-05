@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tariq_al_raqi/filter_screen.dart';
 import 'package:tariq_al_raqi/welcome_screen.dart';
 
 void main() {
