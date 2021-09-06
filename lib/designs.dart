@@ -10,5 +10,5 @@ class Design {
       dining = 0,
       kitchen = 0;
 
-  String? url;
+  dynamic url;
 }

@@ -43,6 +43,7 @@ class _FilterScreenState extends State<FilterScreen> {
   void initState() {
     super.initState();
     fillCardsAndColors();
+
   }
 
   @override

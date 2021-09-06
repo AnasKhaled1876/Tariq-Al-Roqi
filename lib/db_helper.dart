@@ -4,16 +4,14 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:tariq_al_raqi/constants.dart';
 import 'package:tariq_al_raqi/designs.dart';
 
-class DBHelper{
+class DBHelper {
+  List<Design> designs = [];
 
-  List<Design> designs=[];
-
-  int _items = 0;
-  void getDesigns() async {
+  Future<void> getDesigns() async {
     await Firebase.initializeApp();
     final _firestore = FirebaseFirestore.instance;
     _firestore.collection("designs").get().then((querySnapshot) {
-      querySnapshot.docs.forEach((result) {
+      querySnapshot.docs.forEach((result) async {
         Design design = Design();
         design.type = result.get(Constants.TYPE);
         design.majls = result.get(Constants.MAJLS);
@@ -25,25 +23,21 @@ class DBHelper{
         design.living = result.get(Constants.LIVING);
         design.store = result.get(Constants.STORE);
         design.dining = result.get(Constants.DINING);
+        design.url= await _getImages(design.type);
         designs.add(design);
       });
     });
-
   }
 
-    Future<void> downloadURLExample() async {
-      for(int i=0;i<_items;i++) {
-        String downloadURL = await firebase_storage.FirebaseStorage.instance
-            .ref('users/${designs[i].type}.jpg')
-            .getDownloadURL();
-      }
-  }
+  Future<dynamic> _getImages(type) async {
 
+    firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
+        .ref('Designs/$type.jpg');
+    dynamic url = await ref.getDownloadURL();
+    print(url);
+    return url;
+  }
 }
-
-
-
-
 
 // print(result.get(Constants.TYPE));
 // print(result.get(Constants.MAJLS));
