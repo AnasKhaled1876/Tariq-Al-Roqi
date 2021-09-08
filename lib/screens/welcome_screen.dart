@@ -1,17 +1,14 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tariq_al_raqi/db_helper.dart';
-import 'package:tariq_al_raqi/filter_screen.dart';
+import 'package:tariq_al_raqi/screens/designs_screen.dart';
+import 'package:tariq_al_raqi/screens/filter_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   final DBHelper _dbHelper = DBHelper();
 
   void getData() async{
-
     await _dbHelper.getDesigns();
-    print("Anas");
-    print("Khaled");
   }
 
   Widget build(BuildContext context) {
@@ -31,7 +28,7 @@ class WelcomeScreen extends StatelessWidget {
               TextButton(
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return FilterScreen();
+                    return DesignsScreen();
                   }));
                 },
                 child: Row(

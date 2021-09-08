@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:tariq_al_raqi/constants.dart';
-import 'package:tariq_al_raqi/designs.dart';
+import 'package:tariq_al_raqi/classes/constants.dart';
+import 'package:tariq_al_raqi/classes/designs.dart';
 
 class DBHelper {
-  List<Design> designs = [];
+  static List<Design> designs = [];
 
   Future<void> getDesigns() async {
     await Firebase.initializeApp();

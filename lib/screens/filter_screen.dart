@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tariq_al_raqi/designs_screen.dart';
-import 'package:tariq_al_raqi/row_cards.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tariq_al_raqi/welcome_screen.dart';
+import 'package:tariq_al_raqi/classes/row_cards.dart';
+import 'package:tariq_al_raqi/screens/welcome_screen.dart';
+
+import 'designs_screen.dart';
 
 class FilterScreen extends StatefulWidget {
   const FilterScreen({Key? key}) : super(key: key);
@@ -43,7 +44,6 @@ class _FilterScreenState extends State<FilterScreen> {
   void initState() {
     super.initState();
     fillCardsAndColors();
-
   }
 
   @override
@@ -238,29 +238,65 @@ class _FilterScreenState extends State<FilterScreen> {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) {
-                      return DesignsScreen();
-                    }));
-              });
-            },
-            child: Card(margin: EdgeInsets.only(top: 120.0,left:30.0,right: 30.0),
-              color: raqi,
-              elevation: 5.0,
-              child: Center(
-                child: Text(
-                  "Show Design",
-                  style: TextStyle(
-                      fontSize: 35.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-              ),
+          Container(margin: EdgeInsets.only(top: 130.0),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return DesignsScreen();
+                        }));
+                      });
+                    },
+                    child: Container(height: 70.0,
+                      child: Card(
+                        color: Colors.white,
+                        elevation: 5.0,
+                        child: Center(
+                          child: Text(
+                            "Show all Designs",
+                            style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                              return DesignsScreen();
+                            }));
+                      });
+                    },
+                    child: Container(height: 70.0,
+                      child: Card(
+                        color: Colors.black,
+                        elevation: 5.0,
+                        child: Center(widthFactor: double.infinity,
+                          child: Text(
+                            "Filter",
+                            style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                color: raqi),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              ],
             ),
-          )
+          ),
         ],
       ),
     );

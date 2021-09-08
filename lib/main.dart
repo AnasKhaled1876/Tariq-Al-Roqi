@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:tariq_al_raqi/welcome_screen.dart';
+import 'package:tariq_al_raqi/screens/welcome_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +12,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(primaryColor: Colors.black,accentColor: Color.fromRGBO(234, 181, 101, 1.0)),
       home:WelcomeScreen(),
     );
   }
