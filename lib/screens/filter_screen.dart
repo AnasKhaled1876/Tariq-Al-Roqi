@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tariq_al_raqi/classes/row_cards.dart';
-import 'package:tariq_al_raqi/screens/welcome_screen.dart';
-
 import 'designs_screen.dart';
 
 class FilterScreen extends StatefulWidget {
@@ -61,10 +59,7 @@ class _FilterScreenState extends State<FilterScreen> {
                 margin: EdgeInsets.only(bottom: 10.0, top: 10.0),
                 child: IconButton(
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return WelcomeScreen();
-                    }));
+                    Navigator.pop(context);
                   },
                   icon: Icon(
                     FontAwesomeIcons.times,
@@ -287,7 +282,8 @@ class _FilterScreenState extends State<FilterScreen> {
                             style: TextStyle(
                                 fontSize: 20.0,
                                 fontWeight: FontWeight.bold,
-                                color: raqi),
+                                color: raqi,
+                            ),
                           ),
                         ),
                       ),
