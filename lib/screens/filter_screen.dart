@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tariq_al_raqi/classes/designs.dart';
 import 'package:tariq_al_raqi/classes/row_cards.dart';
 import 'designs_screen.dart';
 
@@ -18,6 +19,7 @@ class _FilterScreenState extends State<FilterScreen> {
   var selectedRange = RangeValues(800000, 2000000);
   List<Color> bedRoomCardColor = [];
   List<Color> bathCardColor = [];
+  Design _design = Design();
 
   void fillCardsAndColors() {
     for (int i = 0; i < 5; i++) {
@@ -47,39 +49,32 @@ class _FilterScreenState extends State<FilterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(backgroundColor: Colors.black,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            FontAwesomeIcons.arrowLeft,
+            color: Colors.white,
+            size: 30.0,
+          ),
+        ),
+        title: Container(
+          margin: EdgeInsets.only(left: 100.0),
+          child: Text(
+            "Filter",
+            style: TextStyle(
+                fontSize: 25.0, fontWeight: FontWeight.w700, color: Colors.white),
+          ),
+        ),
+      ),
       backgroundColor: Colors.white,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         verticalDirection: VerticalDirection.down,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Row(
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.only(bottom: 10.0, top: 10.0),
-                child: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(
-                    FontAwesomeIcons.times,
-                    color: Colors.black,
-                    size: 40.0,
-                  ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(bottom: 10.0, top: 30.0, left: 115.0),
-                child: Text(
-                  "Filter",
-                  style: TextStyle(
-                      fontSize: 25.0,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black),
-                ),
-              ),
-            ],
-          ),
           Container(
             margin: EdgeInsets.only(top: 30.0, left: 20.0),
             child: Text("Design",
@@ -233,7 +228,8 @@ class _FilterScreenState extends State<FilterScreen> {
               ],
             ),
           ),
-          Container(margin: EdgeInsets.only(top: 130.0),
+          Container(
+            margin: EdgeInsets.only(top: 130.0),
             child: Row(
               children: <Widget>[
                 Expanded(
@@ -246,7 +242,8 @@ class _FilterScreenState extends State<FilterScreen> {
                         }));
                       });
                     },
-                    child: Container(height: 70.0,
+                    child: Container(
+                      height: 70.0,
                       child: Card(
                         color: Colors.white,
                         elevation: 5.0,
@@ -262,27 +259,30 @@ class _FilterScreenState extends State<FilterScreen> {
                       ),
                     ),
                   ),
-                ),Expanded(
+                ),
+                Expanded(
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                              return DesignsScreen();
-                            }));
+                          return DesignsScreen();
+                        }));
                       });
                     },
-                    child: Container(height: 70.0,
+                    child: Container(
+                      height: 70.0,
                       child: Card(
                         color: Colors.black,
                         elevation: 5.0,
-                        child: Center(widthFactor: double.infinity,
+                        child: Center(
+                          widthFactor: double.infinity,
                           child: Text(
                             "Filter",
                             style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                                color: raqi,
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                              color: raqi,
                             ),
                           ),
                         ),
