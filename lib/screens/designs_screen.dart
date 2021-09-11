@@ -2,13 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tariq_al_raqi/classes/designs.dart';
-import 'package:tariq_al_raqi/db_helper.dart';
 import 'package:tariq_al_raqi/screens/house_screen.dart';
-
 import 'filter_screen.dart';
 
 class DesignsScreen extends StatefulWidget {
-  const DesignsScreen({Key? key}) : super(key: key);
+
+  final List<Design> _designs;
+
+  DesignsScreen(this._designs);
 
   @override
   _DesignsScreenState createState() => _DesignsScreenState();
@@ -24,22 +25,22 @@ class _DesignsScreenState extends State<DesignsScreen> {
   }
 
   void fillList() {
-    for (int i = 0; i < DBHelper.designs.length; i++) {
+    for (int i = 0; i < widget._designs.length; i++) {
       Widget c = GestureDetector(
         onTap: () {
           setState(() {
-            pass(DBHelper.designs[i]);
+            pass(widget._designs[i]);
           });
         },
         child: Card(
           child: ListTile(
               leading: Image(
-                image: NetworkImage(DBHelper.designs[i].url),
+                image: NetworkImage(widget._designs[i].url),
                 width: 100.0,
                 height: 100.0,
               ),
               title: Text(
-                "${DBHelper.designs[i].price}",
+                "${widget._designs[i].price}",
                 style: TextStyle(fontSize: 40.0),
               ),
               subtitle: Row(
@@ -48,14 +49,14 @@ class _DesignsScreenState extends State<DesignsScreen> {
                   Expanded(
                     child: ListTile(
                       leading: Icon(FontAwesomeIcons.bed),
-                      title: Text("${DBHelper.designs[i].bedroom}",
+                      title: Text("${widget._designs[i].bedroom}",
                           style: TextStyle(fontSize: 20.0)),
                     ),
                   ),
                   Expanded(
                     child: ListTile(
                       leading: Icon(FontAwesomeIcons.bath),
-                      title: Text("${DBHelper.designs[i].bathroom}",
+                      title: Text("${widget._designs[i].bathroom}",
                           style: TextStyle(fontSize: 20.0)),
                     ),
                   )
@@ -70,7 +71,7 @@ class _DesignsScreenState extends State<DesignsScreen> {
   @override
   Widget build(BuildContext context) {
     fillList();
-    print(DBHelper.designs.length);
+    print(widget._designs.length);
     return Padding(
       padding: const EdgeInsets.all(25.0),
       child: Scaffold(

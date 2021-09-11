@@ -31,11 +31,11 @@ dependencies:
   loading_indicator: ^3.0.1
   animations: ^2.0.1
   font_awesome_flutter: ^9.1.0
-  sqflite: ^2.0.0+4
   firebase_core: ^1.6.0
   firebase_auth: ^3.1.0
   cloud_firestore: ^2.5.1
   firebase_storage: ^10.0.3
+  animated_text_kit: ^4.2.1
 
 dev_dependencies:
   flutter_test:

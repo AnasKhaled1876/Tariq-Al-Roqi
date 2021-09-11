@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tariq_al_raqi/classes/designs.dart';
 import 'package:tariq_al_raqi/classes/row_cards.dart';
+import 'package:tariq_al_raqi/db_helper.dart';
 import 'designs_screen.dart';
 
 class FilterScreen extends StatefulWidget {
@@ -19,7 +20,32 @@ class _FilterScreenState extends State<FilterScreen> {
   var selectedRange = RangeValues(800000, 2000000);
   List<Color> bedRoomCardColor = [];
   List<Color> bathCardColor = [];
-  Design _design = Design();
+  List<Design> _designs = [];
+  var bed, bath;
+
+  List<Design> filteredDesigns(List<Design> designs) {
+    for (int i = 0; i < DBHelper.designs.length; i++) {
+      if (min <= DBHelper.designs[i].price && max >= DBHelper.designs[i].price) {
+        if(bath!=0 && bed!=0) {
+          if (bed == DBHelper.designs[i].bedroom &&
+              bath == DBHelper.designs[i].bathroom)
+            _designs.add(DBHelper.designs[i]);
+        }
+        else if(bath==0 && bed!=0){
+          if(bed==DBHelper.designs[i].bedroom)
+          _designs.add(DBHelper.designs[i]);
+        }
+        else if(bath!=0 && bed==0){
+          if(bath==DBHelper.designs[i].bathroom)
+            _designs.add(DBHelper.designs[i]);
+        }
+        else{
+          _designs.add(DBHelper.designs[i]);
+        }
+      }
+    }
+    return designs;
+  }
 
   void fillCardsAndColors() {
     for (int i = 0; i < 5; i++) {
@@ -49,7 +75,8 @@ class _FilterScreenState extends State<FilterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -65,7 +92,9 @@ class _FilterScreenState extends State<FilterScreen> {
           child: Text(
             "Filter",
             style: TextStyle(
-                fontSize: 25.0, fontWeight: FontWeight.w700, color: Colors.white),
+                fontSize: 25.0,
+                fontWeight: FontWeight.w700,
+                color: Colors.white),
           ),
         ),
       ),
@@ -132,6 +161,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     setState(() {
                       selectedCard("bed");
                       bedRoomCardColor[0] = raqi;
+                      bed = 0;
                     });
                   },
                   child: BoxContain("Any", bedRoomCardColor[0]),
@@ -141,6 +171,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     setState(() {
                       selectedCard("bed");
                       bedRoomCardColor[1] = raqi;
+                      bed = 4;
                     });
                   },
                   child: BoxContain("4", bedRoomCardColor[1]),
@@ -150,6 +181,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     setState(() {
                       selectedCard("bed");
                       bedRoomCardColor[2] = raqi;
+                      bed = 5;
                     });
                   },
                   child: BoxContain("5", bedRoomCardColor[2]),
@@ -159,6 +191,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     setState(() {
                       selectedCard("bed");
                       bedRoomCardColor[3] = raqi;
+                      bed = 6;
                     });
                   },
                   child: BoxContain("6", bedRoomCardColor[3]),
@@ -168,6 +201,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     setState(() {
                       selectedCard("bed");
                       bedRoomCardColor[4] = raqi;
+                      bed = 7;
                     });
                   },
                   child: BoxContain("7", bedRoomCardColor[4]),
@@ -185,6 +219,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     setState(() {
                       selectedCard("bath");
                       bathCardColor[0] = raqi;
+                      bath = 0;
                     });
                   },
                   child: BoxContain("Any", bathCardColor[0]),
@@ -194,6 +229,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     setState(() {
                       selectedCard("bath");
                       bathCardColor[1] = raqi;
+                      bath = 6;
                     });
                   },
                   child: BoxContain("6", bathCardColor[1]),
@@ -203,6 +239,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     setState(() {
                       selectedCard("bath");
                       bathCardColor[2] = raqi;
+                      bath = 7;
                     });
                   },
                   child: BoxContain("7", bathCardColor[2]),
@@ -212,6 +249,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     setState(() {
                       selectedCard("bath");
                       bathCardColor[3] = raqi;
+                      bath = 8;
                     });
                   },
                   child: BoxContain("8", bathCardColor[3]),
@@ -221,6 +259,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     setState(() {
                       selectedCard("bath");
                       bathCardColor[4] = raqi;
+                      bath = 9;
                     });
                   },
                   child: BoxContain("9", bathCardColor[4]),
@@ -238,7 +277,7 @@ class _FilterScreenState extends State<FilterScreen> {
                       setState(() {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return DesignsScreen();
+                          return DesignsScreen(DBHelper.designs);
                         }));
                       });
                     },
@@ -264,9 +303,10 @@ class _FilterScreenState extends State<FilterScreen> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
+                        filteredDesigns(DBHelper.designs);
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return DesignsScreen();
+                          return DesignsScreen(_designs);
                         }));
                       });
                     },

@@ -5,7 +5,7 @@ import 'package:tariq_al_raqi/classes/constants.dart';
 import 'package:tariq_al_raqi/classes/designs.dart';
 
 class DBHelper {
-  static List<Design> designs = [];
+   static List<Design> designs = [];
 
   Future<void> getDesigns() async {
     await Firebase.initializeApp();
