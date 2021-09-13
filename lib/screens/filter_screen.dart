@@ -14,7 +14,8 @@ class FilterScreen extends StatefulWidget {
 }
 
 class _FilterScreenState extends State<FilterScreen> {
-  Color raqi = Color.fromRGBO(234, 181, 101, 1.0);
+
+  Color _raqi = Color.fromRGBO(234, 181, 101, 1.0);
   int min = 800000;
   int max = 2000000;
   var selectedRange = RangeValues(800000, 2000000);
@@ -57,11 +58,11 @@ class _FilterScreenState extends State<FilterScreen> {
   void selectedCard(String label) {
     if (label == "bed") {
       for (int i = 0; i < 5; i++) {
-        if (bedRoomCardColor[i] == raqi) bedRoomCardColor[i] = Colors.white;
+        if (bedRoomCardColor[i] == _raqi) bedRoomCardColor[i] = Colors.white;
       }
     } else {
       for (int i = 0; i < 5; i++) {
-        if (bathCardColor[i] == raqi) bathCardColor[i] = Colors.white;
+        if (bathCardColor[i] == _raqi) bathCardColor[i] = Colors.white;
       }
     }
   }
@@ -131,7 +132,7 @@ class _FilterScreenState extends State<FilterScreen> {
             margin: EdgeInsets.all(20.0),
             child: SliderTheme(
               data: SliderThemeData(
-                thumbColor: raqi,
+                thumbColor: _raqi,
                 activeTrackColor: Colors.black,
               ),
               child: RangeSlider(
@@ -160,7 +161,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   onTap: () {
                     setState(() {
                       selectedCard("bed");
-                      bedRoomCardColor[0] = raqi;
+                      bedRoomCardColor[0] = _raqi;
                       bed = 0;
                     });
                   },
@@ -170,7 +171,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   onTap: () {
                     setState(() {
                       selectedCard("bed");
-                      bedRoomCardColor[1] = raqi;
+                      bedRoomCardColor[1] = _raqi;
                       bed = 4;
                     });
                   },
@@ -180,7 +181,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   onTap: () {
                     setState(() {
                       selectedCard("bed");
-                      bedRoomCardColor[2] = raqi;
+                      bedRoomCardColor[2] = _raqi;
                       bed = 5;
                     });
                   },
@@ -190,7 +191,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   onTap: () {
                     setState(() {
                       selectedCard("bed");
-                      bedRoomCardColor[3] = raqi;
+                      bedRoomCardColor[3] = _raqi;
                       bed = 6;
                     });
                   },
@@ -200,7 +201,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   onTap: () {
                     setState(() {
                       selectedCard("bed");
-                      bedRoomCardColor[4] = raqi;
+                      bedRoomCardColor[4] = _raqi;
                       bed = 7;
                     });
                   },
@@ -218,7 +219,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   onTap: () {
                     setState(() {
                       selectedCard("bath");
-                      bathCardColor[0] = raqi;
+                      bathCardColor[0] = _raqi;
                       bath = 0;
                     });
                   },
@@ -228,7 +229,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   onTap: () {
                     setState(() {
                       selectedCard("bath");
-                      bathCardColor[1] = raqi;
+                      bathCardColor[1] = _raqi;
                       bath = 6;
                     });
                   },
@@ -238,7 +239,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   onTap: () {
                     setState(() {
                       selectedCard("bath");
-                      bathCardColor[2] = raqi;
+                      bathCardColor[2] = _raqi;
                       bath = 7;
                     });
                   },
@@ -248,7 +249,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   onTap: () {
                     setState(() {
                       selectedCard("bath");
-                      bathCardColor[3] = raqi;
+                      bathCardColor[3] = _raqi;
                       bath = 8;
                     });
                   },
@@ -258,7 +259,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   onTap: () {
                     setState(() {
                       selectedCard("bath");
-                      bathCardColor[4] = raqi;
+                      bathCardColor[4] = _raqi;
                       bath = 9;
                     });
                   },
@@ -322,7 +323,7 @@ class _FilterScreenState extends State<FilterScreen> {
                             style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
-                              color: raqi,
+                              color: _raqi,
                             ),
                           ),
                         ),

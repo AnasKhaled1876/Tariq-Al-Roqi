@@ -6,7 +6,6 @@ import 'package:tariq_al_raqi/screens/house_screen.dart';
 import 'filter_screen.dart';
 
 class DesignsScreen extends StatefulWidget {
-
   final List<Design> _designs;
 
   DesignsScreen(this._designs);
@@ -19,6 +18,7 @@ class _DesignsScreenState extends State<DesignsScreen> {
   List<Widget> designCards = [];
 
   dynamic pass(Design design) {
+
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return HouseScreen(design);
     }));
@@ -32,36 +32,69 @@ class _DesignsScreenState extends State<DesignsScreen> {
             pass(widget._designs[i]);
           });
         },
-        child: Card(
-          child: ListTile(
-              leading: Image(
-                image: NetworkImage(widget._designs[i].url),
-                width: 100.0,
-                height: 100.0,
-              ),
-              title: Text(
-                "${widget._designs[i].price}",
-                style: TextStyle(fontSize: 40.0),
-              ),
-              subtitle: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Expanded(
-                    child: ListTile(
-                      leading: Icon(FontAwesomeIcons.bed),
-                      title: Text("${widget._designs[i].bedroom}",
-                          style: TextStyle(fontSize: 20.0)),
-                    ),
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Row(children: <Widget>[
+            Expanded(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image(
+                    image: NetworkImage(widget._designs[i].url),
                   ),
-                  Expanded(
-                    child: ListTile(
-                      leading: Icon(FontAwesomeIcons.bath),
-                      title: Text("${widget._designs[i].bathroom}",
-                          style: TextStyle(fontSize: 20.0)),
-                    ),
-                  )
+                ),
+            ),
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text(
+                    "${widget._designs[i].price}",
+                    style:
+                        TextStyle(fontSize: 30.0, fontWeight: FontWeight.w400,color: Colors.white),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Expanded(
+                        child: ListTile(
+                          leading: Icon(FontAwesomeIcons.bed,color: Colors.white,),
+                          title: Text("${widget._designs[i].bedroom}",
+                              style: TextStyle(fontSize: 20.0,color: Colors.white)),
+                        ),
+                      ),
+                      Expanded(
+                        child: ListTile(
+                          leading: Icon(FontAwesomeIcons.bath,color: Colors.white,),
+                          title: Text("${widget._designs[i].bathroom}",
+                              style: TextStyle(fontSize: 20.0,color: Colors.white)),
+                        ),
+                      )
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Expanded(
+                        child: ListTile(
+                          leading: Icon(FontAwesomeIcons.couch,color: Colors.white,),
+                          title: Text("${widget._designs[i].majls}",
+                              style: TextStyle(fontSize: 20.0,color: Colors.white)),
+                        ),
+                      ),
+                      Expanded(
+                        child: ListTile(
+                          leading: Icon(FontAwesomeIcons.warehouse, color: Colors.white,),
+                          title: Text("${widget._designs[i].store}",
+                              style: TextStyle(fontSize: 20.0,color: Colors.white),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ],
-              )),
+              ),
+            ),
+          ]),
         ),
       );
       designCards.add(c);
@@ -72,10 +105,8 @@ class _DesignsScreenState extends State<DesignsScreen> {
   Widget build(BuildContext context) {
     fillList();
     print(widget._designs.length);
-    return Padding(
-      padding: const EdgeInsets.all(25.0),
-      child: Scaffold(
-        backgroundColor: Colors.black,
+    return Scaffold(
+        backgroundColor: Color(0xff2c2c2c),
         body: ListView(
           children: designCards,
           scrollDirection: Axis.vertical,
@@ -87,9 +118,39 @@ class _DesignsScreenState extends State<DesignsScreen> {
               return FilterScreen();
             }));
           },
-          child: Icon(FontAwesomeIcons.calculator),
+          child: Icon(FontAwesomeIcons.filter),
         ),
-      ),
-    );
+      );
   }
 }
+
+// Image(
+// image: NetworkImage(widget._designs[i].url),
+// width: 100.0,
+// height: 100.0,
+// )
+//
+// Text(
+// "${widget._designs[i].price}",
+// style: TextStyle(fontSize: 40.0),
+// )
+//
+// Row(
+// mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+// children: <Widget>[
+// Expanded(
+// child: ListTile(
+// leading: Icon(FontAwesomeIcons.bed),
+// title: Text("${widget._designs[i].bedroom}",
+// style: TextStyle(fontSize: 20.0)),
+// ),
+// ),
+// Expanded(
+// child: ListTile(
+// leading: Icon(FontAwesomeIcons.bath),
+// title: Text("${widget._designs[i].bathroom}",
+// style: TextStyle(fontSize: 20.0)),
+// ),
+// )
+// ],
+// )

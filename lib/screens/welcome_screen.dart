@@ -9,7 +9,6 @@ class WelcomeScreen extends StatelessWidget {
 
   static const colorizeColors = [
     Colors.white,
-    Colors.yellow,
     Color.fromRGBO(234, 181, 101, 1.0),
     Colors.black,
   ];
