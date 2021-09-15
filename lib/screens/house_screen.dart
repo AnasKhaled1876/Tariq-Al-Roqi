@@ -40,7 +40,7 @@ class _HouseScreenState extends State<HouseScreen> {
           padding: const EdgeInsets.all(10.0),
           child: Column(
             children: <Widget>[
-              Expanded(
+              Expanded(flex: 2,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10.0),
                   child: Image(
@@ -57,34 +57,37 @@ class _HouseScreenState extends State<HouseScreen> {
                         color: Colors.white),
                     textAlign: TextAlign.start),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Icon(
-                    FontAwesomeIcons.bed,
-                    size: 25.0,
-                    color: Colors.white,
-                  ),
-                  Text(
-                    "${widget.house.bedroom} Bedrooms",
-                    style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white),
-                  ),
-                  Icon(
-                    FontAwesomeIcons.bath,
-                    size: 25.0,
-                    color: Colors.white,
-                  ),
-                  Text(
-                    "${widget.house.bathroom} Bathrooms",
-                    style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white),
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0,bottom: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Icon(
+                      FontAwesomeIcons.bed,
+                      size: 25.0,
+                      color: Colors.white,
+                    ),
+                    Text(
+                      "${widget.house.bedroom} Bedrooms",
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white),
+                    ),
+                    Icon(
+                      FontAwesomeIcons.bath,
+                      size: 25.0,
+                      color: Colors.white,
+                    ),
+                    Text(
+                      "${widget.house.bathroom} Bathrooms",
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white),
+                    ),
+                  ],
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 5.0),
@@ -97,7 +100,7 @@ class _HouseScreenState extends State<HouseScreen> {
                       color: Colors.white,
                     ),
                     Text(
-                      "${widget.house.living} Living Room",
+                      "    ${widget.house.living} Living Room",
                       style: TextStyle(
                           fontSize: 20.0,
                           fontWeight: FontWeight.w400,
@@ -109,7 +112,7 @@ class _HouseScreenState extends State<HouseScreen> {
                       color: Colors.white,
                     ),
                     Text(
-                      "${widget.house.dining} Dining Room",
+                      "  ${widget.house.dining} Dining Room",
                       style: TextStyle(
                           fontSize: 20.0,
                           fontWeight: FontWeight.w400,
@@ -118,13 +121,15 @@ class _HouseScreenState extends State<HouseScreen> {
                   ],
                 ),
               ),
-              Text(
-                "As we appreciate our customers\n And our only aim is your comfort and happiness\n we present to you the most elegant designs\n "
-                "using the latest building technologies BIM to save a lot of money, effort ,and time.",
-                style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w300,
-                    color: Colors.white),
+              Expanded(flex: 1,
+                child: Text(
+                  "As we appreciate our customers\n And our only aim is your comfort and happiness\n we present to you the most elegant designs\n "
+                  "using the latest building technologies BIM to save a lot of money, effort ,and time.",
+                  style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.white),
+                ),
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(minimumSize:Size(double.infinity, 30.0),primary: Colors.black),

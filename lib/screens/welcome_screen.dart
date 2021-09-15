@@ -8,12 +8,11 @@ class WelcomeScreen extends StatelessWidget {
   final DBHelper _dbHelper = DBHelper();
 
   static const colorizeColors = [
-    Colors.white,
     Color.fromRGBO(234, 181, 101, 1.0),
-    Colors.black,
+    Colors.black12,
   ];
 
-  void getData() async{
+  void getData() async {
     await _dbHelper.getDesigns();
   }
 
@@ -34,38 +33,17 @@ class WelcomeScreen extends StatelessWidget {
               Center(
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
                       return DesignsScreen(DBHelper.designs);
                     }));
                   },
-                  child:AnimatedTextKit(
-                    animatedTexts: [
-                      ColorizeAnimatedText(
-                        'Your House',
-                        textStyle: TextStyle(
-                          fontSize: 35.0,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(234, 181, 101, 1.0),
-                        ),
-                        colors: colorizeColors,
-                      ),
-                      ColorizeAnimatedText(
-                        'On Your Own Terms',
-                        textStyle: TextStyle(
-                          fontSize: 35.0,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(234, 181, 101, 1.0),
-                        ),
-                        colors: colorizeColors,
-                      ),
-                    ],
-                    isRepeatingAnimation: true,
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) {
-                          return DesignsScreen(DBHelper.designs);
-                        }));
-                      }
-                  ),
+                  child: Text('       Your House \n On Your Own Terms',
+                      style: TextStyle(
+                        fontSize: 35.0,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromRGBO(234, 181, 101, 1.0),
+                      )),
                 ),
               ),
             ],
