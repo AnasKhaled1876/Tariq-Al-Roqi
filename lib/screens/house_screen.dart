@@ -1,6 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:loading_indicator/loading_indicator.dart';
+import 'package:tariq_al_raqi/classes/constants.dart';
 import 'package:tariq_al_raqi/classes/designs.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -43,8 +46,16 @@ class _HouseScreenState extends State<HouseScreen> {
               Expanded(flex: 2,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10.0),
-                  child: Image(
-                    image: NetworkImage(widget.house.url),
+                  child: CachedNetworkImage(
+                    imageUrl: widget.house.url,
+                    placeholder: (context, url) => LoadingIndicator(
+                        indicatorType: Indicator.ballClipRotateMultiple,
+                        colors: const [Constants.roqi],
+                        strokeWidth: 2,
+                        backgroundColor: Colors.black,
+                        pathBackgroundColor: Colors.black
+                    ),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
                 ),
               ),

@@ -1,7 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:loading_indicator/loading_indicator.dart';
+import 'package:tariq_al_raqi/classes/constants.dart';
 import 'package:tariq_al_raqi/classes/designs.dart';
 import 'package:tariq_al_raqi/screens/house_screen.dart';
 import 'filter_screen.dart';
@@ -18,6 +21,7 @@ class DesignsScreen extends StatefulWidget {
 class _DesignsScreenState extends State<DesignsScreen> {
   List<Widget> designCards = [];
   var f = NumberFormat("#,###,###.0#");
+
 
   dynamic pass(Design design) {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -40,8 +44,16 @@ class _DesignsScreenState extends State<DesignsScreen> {
               flex: 1,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: Image(
-                  image: NetworkImage(widget._designs[i].url),
+                child: CachedNetworkImage(
+                  imageUrl: widget._designs[i].url,
+                  placeholder: (context, url) => LoadingIndicator(
+                      indicatorType: Indicator.ballClipRotateMultiple, /// Required, The loading type of the widget
+                      colors: const [Constants.roqi],       /// Optional, The color collections
+                      strokeWidth: 2,                     /// Optional, The stroke of the line, only applicable to widget which contains line
+                      backgroundColor: Colors.black,      /// Optional, Background of the widget
+                      pathBackgroundColor: Colors.black   /// Optional, the stroke backgroundColor
+                  ),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
               ),
             ),
@@ -154,3 +166,13 @@ class _DesignsScreenState extends State<DesignsScreen> {
     );
   }
 }
+
+class Itemai extends StatelessWidget {
+  const Itemai({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
