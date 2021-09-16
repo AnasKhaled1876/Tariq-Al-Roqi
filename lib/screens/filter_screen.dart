@@ -269,7 +269,7 @@ class _FilterScreenState extends State<FilterScreen> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 130.0),
+            margin: EdgeInsets.only(top: 110.0),
             child: Row(
               children: <Widget>[
                 Expanded(
@@ -307,7 +307,7 @@ class _FilterScreenState extends State<FilterScreen> {
                         filteredDesigns(DBHelper.designs);
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return DesignsScreen(_designs);
+                          return DesignsScreen( _designs);
                         }));
                       });
                     },
