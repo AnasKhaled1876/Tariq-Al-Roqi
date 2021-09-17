@@ -34,7 +34,7 @@ class _DesignsScreenState extends State<DesignsScreen> {
     fillList();
     print(widget._designs.length);
     return Scaffold(
-      backgroundColor: Color(0xff2c2c2c),
+      backgroundColor: Constants.backgroundColor,
       body: ListView(
         itemExtent: 180,
         children: designCards,

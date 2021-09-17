@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tariq_al_raqi/db_helper.dart';
 import 'package:tariq_al_raqi/screens/designs_screen.dart';
+import 'package:tariq_al_raqi/screens/start_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   final DBHelper _dbHelper = DBHelper();
@@ -34,7 +35,7 @@ class WelcomeScreen extends StatelessWidget {
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return DesignsScreen(DBHelper.designs);
+                      return const SigninScreen();
                     }));
                   },
                   child: Text('       Your House \n On Your Own Terms',

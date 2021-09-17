@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:tariq_al_raqi/classes/designs.dart';
 import 'package:tariq_al_raqi/classes/row_cards.dart';
 import 'package:tariq_al_raqi/db_helper.dart';
@@ -15,6 +16,7 @@ class FilterScreen extends StatefulWidget {
 
 class _FilterScreenState extends State<FilterScreen> {
 
+  final f = NumberFormat("#,###,###.0#");
   Color _raqi = Color.fromRGBO(234, 181, 101, 1.0);
   int min = 800000;
   int max = 2000000;
@@ -124,7 +126,7 @@ class _FilterScreenState extends State<FilterScreen> {
             margin: EdgeInsets.only(top: 30.0),
             alignment: Alignment.topRight,
             child: Text(
-              "$min - $max",
+              "${f.format(min)} - ${f.format(max)}",
               style: TextStyle(fontSize: 25.0, color: Colors.black),
             ),
           ),
@@ -132,6 +134,8 @@ class _FilterScreenState extends State<FilterScreen> {
             margin: EdgeInsets.all(20.0),
             child: SliderTheme(
               data: SliderThemeData(
+                inactiveTrackColor: Colors.grey,
+                overlayColor: Colors.blueGrey,
                 thumbColor: _raqi,
                 activeTrackColor: Colors.black,
               ),
@@ -148,7 +152,6 @@ class _FilterScreenState extends State<FilterScreen> {
                 min: 800000,
                 labels: RangeLabels(
                     '${selectedRange.start}', '${selectedRange.end}'),
-                divisions: 4,
               ),
             ),
           ),

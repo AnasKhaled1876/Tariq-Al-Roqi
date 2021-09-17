@@ -18,7 +18,9 @@ class Constants{
 
   static const Color roqi = Color.fromRGBO(234, 181, 101, 1.0);
 
+  static  const backgroundColor = Color(0xff2c2c2c);
 }
+
 
 class ContactButton extends StatelessWidget {
   const ContactButton({Key? key}) : super(key: key);
