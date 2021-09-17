@@ -33,7 +33,7 @@ class _DesignsScreenState extends State<DesignsScreen> {
   Widget build(BuildContext context) {
     fillList();
     print(widget._designs.length);
-    return Scaffold(
+    return Scaffold(appBar: AppBar(),
       backgroundColor: Constants.backgroundColor,
       body: ListView(
         itemExtent: 180,
@@ -47,7 +47,7 @@ class _DesignsScreenState extends State<DesignsScreen> {
             return FilterScreen();
           }));
         },
-        child: Icon(FontAwesomeIcons.filter),
+        child: Icon(FontAwesomeIcons.filter,color: Constants.roqi,),
       ),
     );
   }

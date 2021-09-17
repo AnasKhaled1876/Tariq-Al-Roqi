@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tariq_al_raqi/db_helper.dart';
 import 'package:tariq_al_raqi/screens/designs_screen.dart';
+import 'package:tariq_al_raqi/screens/signin_screen.dart';
 
-class SigninScreen extends StatelessWidget {
-  const SigninScreen({Key? key}) : super(key: key);
+class StartScreen extends StatelessWidget {
+  const StartScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +54,7 @@ class SigninScreen extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return DesignsScreen(DBHelper.designs);
+                  return SigninScreen();
                 }));
               },
             )
