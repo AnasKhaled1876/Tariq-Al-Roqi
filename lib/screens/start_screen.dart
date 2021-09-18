@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tariq_al_raqi/db_helper.dart';
 import 'package:tariq_al_raqi/screens/designs_screen.dart';
+import 'package:tariq_al_raqi/screens/registration_screen.dart';
 import 'package:tariq_al_raqi/screens/signin_screen.dart';
 
 class StartScreen extends StatelessWidget {
@@ -32,7 +33,7 @@ class StartScreen extends StatelessWidget {
                     primary: Colors.white, minimumSize: Size(260.0, 40.0)),
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return DesignsScreen(DBHelper.designs);
+                    return RegistrationScreen();
                   }));
                 },
                 child: Text(

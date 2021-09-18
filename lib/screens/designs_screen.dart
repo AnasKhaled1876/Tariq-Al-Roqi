@@ -33,7 +33,7 @@ class _DesignsScreenState extends State<DesignsScreen> {
   Widget build(BuildContext context) {
     fillList();
     print(widget._designs.length);
-    return Scaffold(appBar: AppBar(),
+    return Scaffold(appBar: AppBar(backgroundColor: Colors.black,),
       backgroundColor: Constants.backgroundColor,
       body: ListView(
         itemExtent: 180,
