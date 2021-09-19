@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -12,6 +13,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   String _email="";
   String _password="";
   String _password2="";
+  final _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +88,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     borderRadius: BorderRadius.circular(30.0),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () async{
+                  _auth.createUserWithEmailAndPassword(email: _email, password: _password);
+                },
                 child: Text(
                   "Next",
                   style: TextStyle(

@@ -26,14 +26,14 @@ apply plugin: 'com.google.gms.google-services'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     defaultConfig {
         multiDexEnabled true
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.AlRoqi.tariq_al_raqi"
         minSdkVersion 16
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -54,5 +54,5 @@ flutter {
 dependencies {
     implementation 'com.android.support:multidex:2.0.1'
     implementation platform('com.google.firebase:firebase-bom:28.4.0')
-
+    implementation 'com.google.firebase:firebase-auth'
 }

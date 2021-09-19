@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:tariq_al_raqi/db_helper.dart';
+import 'package:tariq_al_raqi/screens/designs_screen.dart';
 
-class SigninScreen extends StatelessWidget {
-  final _emailController = TextEditingController();
-  final _passController = TextEditingController();
+class SigninScreen extends StatefulWidget {
+  const SigninScreen({Key? key}) : super(key: key);
+
+  @override
+  _SigninScreenState createState() => _SigninScreenState();
+}
+
+class _SigninScreenState extends State<SigninScreen> {
+
+  final _auth = FirebaseAuth.instance;
+  String _email="";
+  String _pass="";
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +31,6 @@ class SigninScreen extends StatelessWidget {
             ),
             SizedBox(height: 25.0),
             TextField(
-              controller: _emailController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "Email",
@@ -28,11 +38,12 @@ class SigninScreen extends StatelessWidget {
               textInputAction: TextInputAction.done,
               keyboardType: TextInputType.emailAddress,
               maxLines: 1,
-              onEditingComplete: () {},
+              onChanged: (value) {
+                _email=value;
+              },
             ),
             SizedBox(height: 25.0),
             TextField(
-              controller: _passController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "Password",
@@ -40,7 +51,9 @@ class SigninScreen extends StatelessWidget {
               textInputAction: TextInputAction.done,
               obscureText: true,
               maxLines: 1,
-              onEditingComplete: () {},
+              onChanged: (value){
+               _pass=value;
+              },
             ),
             Spacer(),
             ElevatedButton(
@@ -51,7 +64,16 @@ class SigninScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30.0),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () async{
+                if(_email!="" && _pass!="") {
+                  await _auth.signInWithEmailAndPassword(
+                      email: _email, password: _pass);
+                  if(_auth.currentUser != null)
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return DesignsScreen(DBHelper.designs);
+                    }));
+                }
+              },
               child: Text(
                 "Sign In",
                 style: TextStyle(

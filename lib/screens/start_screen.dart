@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:tariq_al_raqi/db_helper.dart';
-import 'package:tariq_al_raqi/screens/designs_screen.dart';
 import 'package:tariq_al_raqi/screens/registration_screen.dart';
 import 'package:tariq_al_raqi/screens/signin_screen.dart';
 
-class StartScreen extends StatelessWidget {
+
+class StartScreen extends StatefulWidget {
   const StartScreen({Key? key}) : super(key: key);
 
+  @override
+  _StartScreenState createState() => _StartScreenState();
+}
+
+class _StartScreenState extends State<StartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,8 +20,10 @@ class StartScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            SizedBox(height: 70.0),
             Text(
-              "A Paradise with unlimited Options",textAlign: TextAlign.center,
+              "A Paradise with unlimited Options",
+              textAlign: TextAlign.center,
               style: TextStyle(fontSize: 30.0, color: Colors.white),
             ),
             Text(
@@ -33,7 +39,7 @@ class StartScreen extends StatelessWidget {
                     primary: Colors.white, minimumSize: Size(260.0, 40.0)),
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return RegistrationScreen();
+                    return const RegistrationScreen();
                   }));
                 },
                 child: Text(
@@ -42,7 +48,8 @@ class StartScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Container(margin: EdgeInsets.only(top: 20.0,bottom: 5.0),
+            Container(
+              margin: EdgeInsets.only(top: 20.0, bottom: 5.0),
               child: Text(
                 "Already a Member?",
                 style: TextStyle(fontSize: 20.0, color: Colors.white),
@@ -55,7 +62,7 @@ class StartScreen extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return SigninScreen();
+                  return const SigninScreen();
                 }));
               },
             )
