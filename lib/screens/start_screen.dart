@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tariq_al_raqi/screens/phone_screen.dart';
 import 'package:tariq_al_raqi/screens/registration_screen.dart';
 import 'package:tariq_al_raqi/screens/signin_screen.dart';
 
@@ -39,7 +40,7 @@ class _StartScreenState extends State<StartScreen> {
                     primary: Colors.white, minimumSize: Size(260.0, 40.0)),
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const RegistrationScreen();
+                    return PhoneScreen();
                   }));
                 },
                 child: Text(

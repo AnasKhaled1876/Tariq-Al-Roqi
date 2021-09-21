@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+//import 'package:url_launcher/url_launcher.dart';
 
 
 class Constants{
@@ -31,7 +31,7 @@ class ContactButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(minimumSize:Size(double.infinity, 30.0),primary: Colors.black),
       onPressed: () {
-        launch("tel://+971585556767");
+        //launch("tel://+971585556767");
       },
       child: Text(
         "Contact our Office",

@@ -99,7 +99,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     color: Colors.white,
                   ),
                 ),
-              )
+              ),
             ],
             mainAxisAlignment: MainAxisAlignment.center,
           ),

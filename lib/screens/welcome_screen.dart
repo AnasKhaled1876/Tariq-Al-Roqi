@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tariq_al_raqi/db_helper.dart';
-import 'package:tariq_al_raqi/screens/designs_screen.dart';
 import 'package:tariq_al_raqi/screens/start_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
