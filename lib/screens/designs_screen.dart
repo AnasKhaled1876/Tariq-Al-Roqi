@@ -7,19 +7,21 @@ import 'package:loading_indicator/loading_indicator.dart';
 import 'package:tariq_al_raqi/classes/constants.dart';
 import 'package:tariq_al_raqi/classes/designs.dart';
 import 'package:tariq_al_raqi/screens/house_screen.dart';
+import 'package:tariq_al_raqi/screens/start_screen.dart';
 import 'filter_screen.dart';
 
 class DesignsScreen extends StatefulWidget {
   final List<Design> _designs;
 
-  DesignsScreen(this._designs);
+  DesignsScreen(this._designs, this.guest);
+
+  final bool guest;
 
   @override
   _DesignsScreenState createState() => _DesignsScreenState();
 }
 
 class _DesignsScreenState extends State<DesignsScreen> {
-
   List<Widget> designCards = [];
 
   void fillList() {
@@ -33,29 +35,59 @@ class _DesignsScreenState extends State<DesignsScreen> {
   Widget build(BuildContext context) {
     fillList();
     print(widget._designs.length);
-    return Scaffold(appBar: AppBar(backgroundColor: Colors.black,),
-      backgroundColor: Constants.backgroundColor,
-      body: ListView(
-        itemExtent: 180,
-        children: designCards,
-        scrollDirection: Axis.vertical,
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
       ),
-      floatingActionButton: FloatingActionButton(
+      backgroundColor: Constants.backgroundColor,
+      body: Column(mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+        Expanded(
+          child: ListView(
+            itemExtent: 180,
+            children: designCards,
+            scrollDirection: Axis.vertical,
+          ),
+        ),
+        if(widget.guest)
+          Container(margin: EdgeInsets.symmetric(vertical: 15.0),
+            child: GestureDetector(
+              child: Center(
+                child: const Text(
+                  "For more options and Designs\n Sign Up",
+                  style: TextStyle(fontSize: 23.0, color: Colors.white),
+                textAlign: TextAlign.center,
+                ),
+              ),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const StartScreen();
+                }));
+              },
+            ),
+          )
+      ],
+      ),
+      floatingActionButton: !widget.guest ? FloatingActionButton(
         backgroundColor: Colors.black,
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             return FilterScreen();
           }));
         },
-        child: Icon(FontAwesomeIcons.filter,color: Constants.roqi,),
-      ),
+        child:
+          Icon(
+          FontAwesomeIcons.filter,
+          color: Constants.roqi,
+        ),
+      ) : null,
     );
   }
 }
 
 class HouseItem extends StatelessWidget {
-
   HouseItem(this.design);
+
   final f = NumberFormat("#,###,###.0#");
   final Design design;
 
@@ -77,12 +109,11 @@ class HouseItem extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl: design.url,
                 placeholder: (context, url) => LoadingIndicator(
-                    indicatorType: Indicator.ballClipRotateMultiple, /// Required, The loading type of the widget
-                    colors: const [Constants.roqi],       /// Optional, The color collections
-                    strokeWidth: 2,                     /// Optional, The stroke of the line, only applicable to widget which contains line
-                    backgroundColor: Colors.black,      /// Optional, Background of the widget
-                    pathBackgroundColor: Colors.black   /// Optional, the stroke backgroundColor
-                ),
+                    indicatorType: Indicator.ballClipRotateMultiple,
+                    colors: const [Constants.roqi],
+                    strokeWidth: 2,
+                    backgroundColor: Colors.black,
+                    pathBackgroundColor: Colors.black),
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
             ),
@@ -113,7 +144,7 @@ class HouseItem extends StatelessWidget {
                       ),
                       title: Text("${design.bedroom}",
                           style:
-                          TextStyle(fontSize: 20.0, color: Colors.white)),
+                              TextStyle(fontSize: 20.0, color: Colors.white)),
                     ),
                   ),
                   Container(
@@ -126,8 +157,8 @@ class HouseItem extends StatelessWidget {
                       ),
                       title: Center(
                         child: Text("${design.bathroom}",
-                            style: TextStyle(
-                                fontSize: 20.0, color: Colors.white)),
+                            style:
+                                TextStyle(fontSize: 20.0, color: Colors.white)),
                       ),
                     ),
                   ),
@@ -146,7 +177,7 @@ class HouseItem extends StatelessWidget {
                       ),
                       title: Text("${design.majls}",
                           style:
-                          TextStyle(fontSize: 20.0, color: Colors.white)),
+                              TextStyle(fontSize: 20.0, color: Colors.white)),
                     ),
                   ),
                   Container(
@@ -171,7 +202,4 @@ class HouseItem extends StatelessWidget {
       ),
     );
   }
-
-
 }
-

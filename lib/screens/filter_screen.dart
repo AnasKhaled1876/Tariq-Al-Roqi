@@ -281,7 +281,7 @@ class _FilterScreenState extends State<FilterScreen> {
                       setState(() {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return DesignsScreen(DBHelper.designs);
+                          return DesignsScreen(DBHelper.designs,false);
                         }));
                       });
                     },
@@ -307,10 +307,12 @@ class _FilterScreenState extends State<FilterScreen> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
+                        if(_designs.isNotEmpty)
+                          _designs.clear();
                         filteredDesigns(DBHelper.designs);
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return DesignsScreen( _designs);
+                          return DesignsScreen( _designs,false);
                         }));
                       });
                     },

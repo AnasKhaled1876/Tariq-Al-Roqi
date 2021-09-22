@@ -70,7 +70,7 @@ class _SigninScreenState extends State<SigninScreen> {
                       email: _email, password: _pass);
                   if(_auth.currentUser != null)
                     Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return DesignsScreen(DBHelper.designs);
+                      return DesignsScreen(DBHelper.designs,false);
                     }));
                 }
               },

@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tariq_al_raqi/db_helper.dart';
+import 'package:tariq_al_raqi/screens/signin_screen.dart';
 import 'package:tariq_al_raqi/screens/start_screen.dart';
+
+import 'designs_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   final DBHelper _dbHelper = DBHelper();
@@ -21,31 +24,35 @@ class WelcomeScreen extends StatelessWidget {
       body: Container(
         color: Colors.black,
         child: Expanded(
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                child: Image(
-                  image: AssetImage("images/tariq.jpg"),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: <Widget>[
+                Expanded(
+                  child: Image(
+                    image: AssetImage("images/tariq.jpg"),
+                  ),
+                  flex: 7,
                 ),
-                flex: 7,
-              ),
-              Center(
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return const StartScreen();
-                    }));
-                  },
-                  child: Text('       Your House \n On Your Own Terms',
-                      style: TextStyle(
-                        fontSize: 35.0,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromRGBO(234, 181, 101, 1.0),
-                      )),
+                Center(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return const StartScreen();
+                      }));
+                    },
+                    child: Text('       Your House \n On Your Own Terms',
+                        style: TextStyle(
+                          fontFamily:'Lato',
+                          fontSize: 35.0,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromRGBO(234, 181, 101, 1.0),
+                        )),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

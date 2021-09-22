@@ -56,7 +56,7 @@ class _VerifyingScreenState extends State<VerifyingScreen> {
                     await _auth.signInWithCredential(phoneAuthCredential);
                 if (authCredential.user != null)
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return DesignsScreen(DBHelper.designs);
+                    return DesignsScreen(DBHelper.designs,false);
                   }));
               } catch (e) {
                 print(e);
