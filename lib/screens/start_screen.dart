@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tariq_al_raqi/screens/phone_screen.dart';
 import 'package:tariq_al_raqi/screens/registration_screen.dart';
 import 'package:tariq_al_raqi/screens/signin_screen.dart';
+import 'package:tariq_al_raqi/screens/verifying_screen.dart';
 
 
 class StartScreen extends StatefulWidget {

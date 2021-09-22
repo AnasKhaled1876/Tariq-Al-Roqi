@@ -20,57 +20,60 @@ class _VerifyingScreenState extends State<VerifyingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        TextField(
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            hintText: "Password",
-          ),
-          textInputAction: TextInputAction.next,
-          obscureText: true,
-          maxLines: 1,
-          onChanged: (value) {
-            userCode = value;
-          },
-        ),
-        Spacer(),
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            primary: Colors.black,
-            minimumSize: Size(double.infinity, 50),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30.0),
+    return Scaffold(
+      body: Column(
+        children: <Widget>[
+          Spacer(),
+             TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: "Verification Code",
+              ),
+              textInputAction: TextInputAction.done,
+              keyboardType: TextInputType.number,
+              maxLines: 1,
+              onChanged: (value) {
+                userCode = value;
+              },
+            ),
+          Spacer(),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.black,
+              minimumSize: Size(double.infinity, 50),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+            ),
+            onPressed: () async {
+              setState(() {
+                loading = true;
+              });
+              final phoneAuthCredential = PhoneAuthProvider.credential(
+                  verificationId: widget.verificationId, smsCode: userCode);
+              try {
+                final authCredential =
+                    await _auth.signInWithCredential(phoneAuthCredential);
+                if (authCredential.user != null)
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return DesignsScreen(DBHelper.designs);
+                  }));
+              } catch (e) {
+                print(e);
+              }
+            },
+            child: Text(
+              "Next",
+              style: TextStyle(
+                fontSize: 30.0,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+              ),
             ),
           ),
-          onPressed: () async {
-            setState(() {
-              loading = true;
-            });
-            final phoneAuthCredential = PhoneAuthProvider.credential(
-                verificationId: widget.verificationId, smsCode: userCode);
-            try {
-              final authCredential =
-                  await _auth.signInWithCredential(phoneAuthCredential);
-              if (authCredential.user != null)
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return DesignsScreen(DBHelper.designs);
-                }));
-            } catch (e) {
-              print(e);
-            }
-          },
-          child: Text(
-            "Next",
-            style: TextStyle(
-              fontSize: 30.0,
-              fontWeight: FontWeight.w600,
-              color: Colors.white,
-            ),
-          ),
-        ),
-        if (loading) CircularProgressIndicator(),
-      ],
+          if (loading) CircularProgressIndicator(),
+        ],
+      ),
     );
   }
 }

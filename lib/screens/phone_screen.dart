@@ -18,7 +18,6 @@ class _PhoneScreenState extends State<PhoneScreen> {
   String verificationID = "";
   bool loading = false;
   String userCode = "";
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,9 +53,6 @@ class _PhoneScreenState extends State<PhoneScreen> {
               timeout: const Duration(seconds: 100),
                 phoneNumber: _phone,
                 verificationCompleted: (phoneAuthCredential) async {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return VerifyingScreen(verificationId: verificationID);
-                  }));
                 },
                 verificationFailed: (verificationFailed) async {
                   print("Nooooooo ${verificationFailed.message}");
@@ -64,6 +60,9 @@ class _PhoneScreenState extends State<PhoneScreen> {
                 codeSent: (verificationID, resendingToken) async {
                   this.verificationID = verificationID;
                   print('verification id is $verificationID');
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return VerifyingScreen(verificationId: verificationID);
+                  }));
                 },
                 codeAutoRetrievalTimeout: (verificationID) {
                 this.verificationID=verificationID;
