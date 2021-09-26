@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>554955386462-plbqq12g0kfgla5av1eenptjr1qc2dpc.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.554955386462-plbqq12g0kfgla5av1eenptjr1qc2dpc</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>554955386462-rfvufucabd15eb711fn7be89dflilelb.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDstJ_J1HrHcAOGgWH6IJ75E1k8dzY3D-k</string>
+	<key>GCM_SENDER_ID</key>
+	<string>554955386462</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.AlRoqi.tariq-al-raqi</string>
+	<key>PROJECT_ID</key>
+	<string>tariq-al-roqi</string>
+	<key>STORAGE_BUCKET</key>
+	<string>tariq-al-roqi.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:554955386462:ios:11f44e665d23fe95f88ecf</string>
+</dict>
+</plist>
