@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:tariq_al_raqi/classes/constants.dart';
 import 'package:tariq_al_raqi/db_helper.dart';
@@ -13,9 +15,31 @@ class StartScreen extends StatefulWidget {
 }
 
 class _StartScreenState extends State<StartScreen> {
+
+  Future<bool> _onWillPop() async {
+    return (await showDialog(
+      context: context,
+      builder: (context) => new AlertDialog(
+        title: const Text('Are you sure?'),
+        content: const Text('Do you want to exit an App'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('No'),
+          ),
+          TextButton(
+            onPressed: () => exit(0),
+            child: const Text('Yes'),
+          ),
+        ],
+      ),
+    )) ?? false;
+  }
+
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(onWillPop: _onWillPop, child: Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 35.0,horizontal: 8.0),
@@ -79,6 +103,6 @@ class _StartScreenState extends State<StartScreen> {
           ],
         ),
       ),
-    );
+    ),);
   }
 }

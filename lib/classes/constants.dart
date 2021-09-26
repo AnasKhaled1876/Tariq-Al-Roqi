@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 //import 'package:url_launcher/url_launcher.dart';
 
 class Constants {
+
   static String TYPE = "type",
       PRICE = "price",
       BED = "bedroom",

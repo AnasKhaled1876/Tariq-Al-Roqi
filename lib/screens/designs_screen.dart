@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:animations/animations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,6 +26,27 @@ class DesignsScreen extends StatefulWidget {
 class _DesignsScreenState extends State<DesignsScreen> {
   List<Widget> designCards = [];
 
+  Future<bool> _onWillPop() async {
+    return (await showDialog(
+          context: context,
+          builder: (context) => new AlertDialog(
+            title: const Text('Are you sure?'),
+            content: const Text('Do you want to exit an App'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: const Text('No'),
+              ),
+              TextButton(
+                onPressed: () => exit(0),
+                child: const Text('Yes'),
+              ),
+            ],
+          ),
+        )) ??
+        false;
+  }
+
   void fillList() {
     for (int i = 0; i < widget._designs.length; i++) {
       Widget c = HouseItem(widget._designs[i]);
@@ -36,55 +58,56 @@ class _DesignsScreenState extends State<DesignsScreen> {
   Widget build(BuildContext context) {
     fillList();
     print(widget._designs.length);
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-      ),
-      backgroundColor: Constants.backgroundColor,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Expanded(
-            child: ListView(
-              itemExtent: 180,
-              children: designCards,
-              scrollDirection: Axis.vertical,
+    return WillPopScope(
+      onWillPop: widget.guest ? null : _onWillPop,
+      child: Scaffold(
+        backgroundColor: Constants.backgroundColor,
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Expanded(
+              child: ListView(
+                itemExtent: 180,
+                children: designCards,
+                scrollDirection: Axis.vertical,
+              ),
             ),
-          ),
-          if (widget.guest)
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 15.0),
-              child: GestureDetector(
-                child: Center(
-                  child: const Text(
-                    "For more options and Designs\n Sign Up",
-                    style: TextStyle(fontSize: 23.0, color: Colors.white),
-                    textAlign: TextAlign.center,
+            if (widget.guest)
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 15.0),
+                child: GestureDetector(
+                  child: Center(
+                    child: const Text(
+                      "For more options and Designs\n Sign Up",
+                      style: TextStyle(fontSize: 23.0, color: Colors.white),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const StartScreen();
+                    }));
+                  },
                 ),
-                onTap: () {
+              )
+          ],
+        ),
+        floatingActionButton: !widget.guest
+            ? FloatingActionButton(
+                backgroundColor: Colors.black,
+                onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const StartScreen();
+                    return FilterScreen();
                   }));
                 },
-              ),
-            )
-        ],
+                child: Icon(
+                  FontAwesomeIcons.filter,
+                  color: Constants.roqi,
+                ),
+              )
+            : null,
       ),
-      floatingActionButton: !widget.guest
-          ? FloatingActionButton(
-              backgroundColor: Colors.black,
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return FilterScreen();
-                }));
-              },
-              child: Icon(
-                FontAwesomeIcons.filter,
-                color: Constants.roqi,
-              ),
-            )
-          : null,
     );
   }
 }
@@ -213,7 +236,3 @@ class HouseItem extends StatelessWidget {
     );
   }
 }
-
-// Navigator.push(context, MaterialPageRoute(builder: (context) {
-// return HouseScreen(house: design);
-// }));
