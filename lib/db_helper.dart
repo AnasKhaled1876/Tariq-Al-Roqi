@@ -1,11 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tariq_al_raqi/classes/constants.dart';
 import 'package:tariq_al_raqi/classes/designs.dart';
 
 class DBHelper {
    static List<Design> designs = [];
+
+   String dbName ='signed.db';
 
   Future<void> getDesigns() async {
     await Firebase.initializeApp();
@@ -37,15 +40,25 @@ class DBHelper {
     print(url);
     return url;
   }
+
+
+  void signConfirmed() async{
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool('signed', true);
+  }
+   Future<bool> checkSigned() async{
+     final prefs = await SharedPreferences.getInstance();
+     final sign = prefs.getBool('signed') ?? false;
+     return sign;
+   }
 }
 
-// print(result.get(Constants.TYPE));
-// print(result.get(Constants.MAJLS));
-// print(result.get(Constants.PRICE));
-// print(result.get(Constants.BED));
-// print(result.get(Constants.BATH));
-// print(result.get(Constants.MAID));
-// print(result.get(Constants.DINING));
-// print(result.get(Constants.KITCHEN));
-// print(result.get(Constants.LIVING));
-// print(result.get(Constants.STORE));
+// var db = await openDatabase(dbName,version: 1,onCreate: (Database db, int version) async {
+//   // When creating the db, create the table
+//   await db.execute(
+//       'CREATE TABLE Signed (id INTEGER PRIMARY KEY, sign INTEGER)');
+// });
+// await db.transaction((txn) async {
+//   await txn.rawInsert(
+//       'INSERT INTO Signed(sign) VALUES(1)');
+// });

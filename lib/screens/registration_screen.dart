@@ -89,7 +89,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                 ),
                 onPressed: () async{
-                  _auth.createUserWithEmailAndPassword(email: _email, password: _password);
+                  await _auth.createUserWithEmailAndPassword(email: _email, password: _password);
                 },
                 child: Text(
                   "Next",

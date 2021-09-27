@@ -54,10 +54,12 @@ class _VerifyingScreenState extends State<VerifyingScreen> {
               try {
                 final authCredential =
                     await _auth.signInWithCredential(phoneAuthCredential);
-                if (authCredential.user != null)
+                if (authCredential.user != null) {
+                  DBHelper().signConfirmed();
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return DesignsScreen(DBHelper.designs,false);
+                    return DesignsScreen(DBHelper.designs, false);
                   }));
+                }
               } catch (e) {
                 print(e);
               }
