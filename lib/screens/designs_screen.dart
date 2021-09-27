@@ -132,13 +132,14 @@ class HouseItem extends StatelessWidget {
       },
       closedBuilder: (BuildContext context, void Function() action) {
         return Padding(
-          padding: EdgeInsets.all(9.0),
+          padding: EdgeInsets.all(1.0),
           child: Row(children: <Widget>[
-            Expanded(
-              flex: 1,
-              child: ClipRRect(
+            ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
                 child: CachedNetworkImage(
+                  width: 140,
+                  fit: BoxFit.fill,
+                  height: 140,
                   imageUrl: design.url,
                   placeholder: (context, url) => LoadingIndicator(
                       indicatorType: Indicator.ballClipRotateMultiple,
@@ -149,7 +150,6 @@ class HouseItem extends StatelessWidget {
                   errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
               ),
-            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
@@ -160,6 +160,7 @@ class HouseItem extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 28.0,
                         fontWeight: FontWeight.w400,
+                        fontFamily: 'Lato',
                         color: Colors.white),
                   ),
                 ),
