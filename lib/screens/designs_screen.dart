@@ -29,17 +29,13 @@ class _DesignsScreenState extends State<DesignsScreen> {
   Future<bool> _onWillPop() async {
     return (await showDialog(
           context: context,
-          builder: (context) => new AlertDialog(
-            title: const Text('Are you sure?'),
-            content: const Text('Do you want to exit an App'),
+          builder: (context) => new AlertDialog(backgroundColor: Colors.black,
+            title: const Text('Are you sure?',style: TextStyle(color: Colors.white),),
+            content: const Text('Do you want to exit an App',style: TextStyle(color: Colors.white),),
             actions: <Widget>[
               TextButton(
-                onPressed: () => Navigator.of(context).pop(false),
-                child: const Text('No'),
-              ),
-              TextButton(
                 onPressed: () => exit(0),
-                child: const Text('Yes'),
+                child: const Text('Ok',style: TextStyle(color: Colors.white),),
               ),
             ],
           ),
@@ -58,7 +54,8 @@ class _DesignsScreenState extends State<DesignsScreen> {
   Widget build(BuildContext context) {
     fillList();
     print(widget._designs.length);
-    return WillPopScope(
+
+    return widget._designs.length>0 ? (WillPopScope(
       onWillPop: widget.guest ? null : _onWillPop,
       child: Scaffold(
         backgroundColor: Constants.backgroundColor,
@@ -108,7 +105,17 @@ class _DesignsScreenState extends State<DesignsScreen> {
               )
             : null,
       ),
-    );
+    )) : AlertDialog(backgroundColor: Colors.black,
+        title: const Text('No Internet Connection'),
+        content: const Text('Please Check your Internet Connection\n and Try again.'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: (){
+              exit(0);
+            },
+            child: const Text('Ok'),
+          ),
+        ]);
   }
 }
 
