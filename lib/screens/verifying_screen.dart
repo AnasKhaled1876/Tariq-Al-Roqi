@@ -17,6 +17,7 @@ class _VerifyingScreenState extends State<VerifyingScreen> {
   final _auth = FirebaseAuth.instance;
   bool loading = false;
   String userCode = "";
+  bool _wrongCode=false;
 
   @override
   Widget build(BuildContext context) {

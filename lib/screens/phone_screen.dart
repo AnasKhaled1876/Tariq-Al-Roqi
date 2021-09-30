@@ -16,6 +16,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
   String verificationID = "";
   bool loading = false;
   String userCode = "";
+  bool _wrongNumber = false;
 
   @override
   Widget build(BuildContext context) {
@@ -30,18 +31,23 @@ class _PhoneScreenState extends State<PhoneScreen> {
             )),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(mainAxisAlignment: MainAxisAlignment.start,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              SizedBox(height: 20.0,),
+              SizedBox(
+                height: 20.0,
+              ),
               Text(
                 "Enter Your Mobile Number",
                 style: TextStyle(fontFamily: "Lato", fontSize: 20.0),
-              textAlign: TextAlign.center,),
+                textAlign: TextAlign.center,
+              ),
               SizedBox(
                 height: 10.0,
               ),
               Container(
                 width: 300,
+                margin: EdgeInsets.only(bottom: 15.0),
                 child: TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -55,6 +61,11 @@ class _PhoneScreenState extends State<PhoneScreen> {
                   },
                 ),
               ),
+              if (_wrongNumber)
+                Text(
+                  "Please Enter a valid Number",
+                  style: TextStyle(color: Colors.red, fontSize: 18.0,fontFamily: 'Lato'),
+                ),
               Spacer(),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -62,31 +73,37 @@ class _PhoneScreenState extends State<PhoneScreen> {
                   style: ElevatedButton.styleFrom(
                     primary: Colors.black,
                     minimumSize: Size(double.infinity, 50),
-
                   ),
                   onPressed: () async {
-                    setState(() {
-                      loading = true;
-                    });
-                    await _auth.verifyPhoneNumber(
-                        timeout: const Duration(seconds: 100),
-                        phoneNumber: _phone,
-                        verificationCompleted: (phoneAuthCredential) async {},
-                        verificationFailed: (verificationFailed) async {
-                          print("Nooooooo ${verificationFailed.message}");
-                        },
-                        codeSent: (verificationID, resendingToken) async {
-                          this.verificationID = verificationID;
-                          print('verification id is $verificationID');
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return VerifyingScreen(
-                                verificationId: verificationID);
-                          }));
-                        },
-                        codeAutoRetrievalTimeout: (verificationID) {
-                          this.verificationID = verificationID;
-                        });
+                    if (_phone.toString().length != 13)
+                      setState(() {
+                        _wrongNumber = true;
+                      });
+                    else {
+                      setState(() {
+                        _wrongNumber = false;
+                        loading = true;
+                      });
+                      await _auth.verifyPhoneNumber(
+                          timeout: const Duration(seconds: 100),
+                          phoneNumber: _phone,
+                          verificationCompleted: (phoneAuthCredential) async {},
+                          verificationFailed: (verificationFailed) async {
+                            print("Nooooooo ${verificationFailed.message}");
+                          },
+                          codeSent: (verificationID, resendingToken) async {
+                            this.verificationID = verificationID;
+                            print('verification id is $verificationID');
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return VerifyingScreen(
+                                  verificationId: verificationID);
+                            }));
+                          },
+                          codeAutoRetrievalTimeout: (verificationID) {
+                            this.verificationID = verificationID;
+                          });
+                    }
                   },
                   child: Text(
                     "Next",

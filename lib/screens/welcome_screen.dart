@@ -1,16 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tariq_al_raqi/classes/constants.dart';
 import 'package:tariq_al_raqi/db_helper.dart';
 import 'package:tariq_al_raqi/screens/start_screen.dart';
 import 'designs_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   final DBHelper _dbHelper = DBHelper();
+
   static bool go=false;
   static const colorizeColors = [
     Color.fromRGBO(234, 181, 101, 1.0),
     Colors.black12,
   ];
+
+  static final Shader linearGradient = LinearGradient(
+    colors: <Color>[Color(0xffF6D06E), Color(0xff856220)],
+  ).createShader(Rect.fromLTWH(0.0, 0.0, 300.0, 70.0));
 
   void getData() async {
     await _dbHelper.getDesigns();
@@ -54,7 +60,7 @@ class WelcomeScreen extends StatelessWidget {
                           fontFamily:'Lato',
                           fontSize: 35.0,
                           fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(234, 181, 101, 1.0),
+                          foreground: Paint()..shader = linearGradient,
                         )),
                   ),
                 ),

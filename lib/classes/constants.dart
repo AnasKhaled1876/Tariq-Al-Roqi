@@ -1,10 +1,12 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-//import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class Constants {
+
+
 
   static String TYPE = "type",
       PRICE = "price",
@@ -54,6 +56,8 @@ class ContactButton extends StatelessWidget {
   const ContactButton({Key? key, required this.buttonText}) : super(key: key);
   final String buttonText;
 
+
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -63,12 +67,13 @@ class ContactButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),
           )),
-      onPressed: () {
-        // if(buttonText=="Call")
-        //    launch("tel://+971585556767");
-        // else
-        //    var whatsappUrl ="whatsapp://send?phone=$phone";
-        // await canLaunch(whatsappUrl)? launch(whatsappUrl)
+      onPressed: () async {
+         if(buttonText=="  Call")
+            await launch("tel://+971585556767");
+        else {
+           var whatsappUrl = "whatsapp://send?phone=+971585556767";
+           await canLaunch(whatsappUrl) ? launch(whatsappUrl) : print("Why");
+         }
       },
       child: Center(
         child: ListTile(contentPadding: EdgeInsets.zero,

@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:tariq_al_raqi/classes/constants.dart';
 import 'package:tariq_al_raqi/db_helper.dart';
@@ -15,6 +14,10 @@ class StartScreen extends StatefulWidget {
 }
 
 class _StartScreenState extends State<StartScreen> {
+  static final Shader linearGradient = LinearGradient(
+    colors: <Color>[Color(0xffF5D78B), Color(0xff856220)],
+  ).createShader(Rect.fromLTWH(0.0, 0.0, 50.0, 40.0));
+
   Future<bool> _onWillPop() async {
     return (await showDialog(
           context: context,
@@ -34,6 +37,26 @@ class _StartScreenState extends State<StartScreen> {
           ),
         )) ??
         false;
+  }
+
+  Future<void> _noInternetMessage() async {
+    await showDialog(
+      context: context,
+      builder: (context) => new AlertDialog(
+        backgroundColor: Colors.white,
+        title: const Text('No Internet Connection'),
+        content: const Text(
+            'Please Check your Internet Connection and Try again.'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              exit(0);
+            },
+            child: const Text('Ok'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -71,7 +94,7 @@ class _StartScreenState extends State<StartScreen> {
                     ),
                     SizedBox(width: 10.0),
                     SignButton(
-                        path: () {
+                        path: () async {
                           if (DBHelper.designs.length > 0)
                             Navigator.push(
                               context,
@@ -81,21 +104,7 @@ class _StartScreenState extends State<StartScreen> {
                               }),
                             );
                           else
-                            setState(() {
-                              AlertDialog(
-                                  backgroundColor: Colors.black,
-                                  title: const Text('No Internet Connection'),
-                                  content: const Text(
-                                      'Please Check your Internet Connection\n and Try again.'),
-                                  actions: <Widget>[
-                                    TextButton(
-                                      onPressed: () {
-                                        exit(0);
-                                      },
-                                      child: const Text('Ok'),
-                                    ),
-                                  ]);
-                            });
+                            await _noInternetMessage();
                         },
                         signText: "Sign as Guest"),
                   ],
@@ -109,9 +118,11 @@ class _StartScreenState extends State<StartScreen> {
                 ),
               ),
               GestureDetector(
-                child: const Text(
+                child: Text(
                   "Sign up",
-                  style: TextStyle(fontSize: 30.0, color: Colors.amber),
+                  style: TextStyle(
+                      fontSize: 30.0,
+                      foreground: Paint()..shader = linearGradient),
                 ),
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
