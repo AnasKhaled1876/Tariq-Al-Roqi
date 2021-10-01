@@ -19,7 +19,9 @@ class Constants {
       KITCHEN = "kitchen",
       MAJLS = "majls";
 
-  static const Color roqi = Color.fromRGBO(234, 181, 101, 1.0);
+  static const Color roqiColor = Color(0xfff2c75c);
+
+
 
   static const backgroundColor = Color(0xff2c2c2c);
 }

@@ -1,17 +1,24 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tariq_al_raqi/db_helper.dart';
 import 'package:tariq_al_raqi/screens/start_screen.dart';
+
 import 'designs_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   final DBHelper _dbHelper = DBHelper();
 
-  static bool go=false;
+  static bool go = false;
   static const colorizeColors = [
-    Color.fromRGBO(234, 181, 101, 1.0),
-    Colors.black12,
+    Color(0xffF6D06E),
+    Color(0xff856220),
   ];
+
+  static const colorizeTextStyle = TextStyle(
+    fontSize: 35.0,
+//fontFamily: 'Lato',
+  );
 
   static final Shader linearGradient = LinearGradient(
     colors: <Color>[Color(0xffF6D06E), Color(0xff856220)],
@@ -24,45 +31,103 @@ class WelcomeScreen extends StatelessWidget {
 
   Widget build(BuildContext context) {
     getData();
+    // Future.delayed(const Duration(seconds: 5), () async {
+    //   if (DBHelper.designs.length > 0) {
+    //     if (go) {
+    //       Navigator.push(context, MaterialPageRoute(builder: (context) {
+    //         return DesignsScreen(DBHelper.designs, false);
+    //       }));
+    //     } else {
+    //       Navigator.push(context, MaterialPageRoute(builder: (context) {
+    //         return const StartScreen();
+    //       }));
+    //     }
+    //   } else {
+    //     await showDialog(
+    //       context: context,
+    //       builder: (context) => new AlertDialog(
+    //         backgroundColor: Colors.white,
+    //         title: const Text('No Internet Connection'),
+    //         content: const Text(
+    //             'Please Check your Internet Connection and Try again.'),
+    //         actions: <Widget>[
+    //           TextButton(
+    //             onPressed: () {
+    //               exit(0);
+    //             },
+    //             child: const Text('Ok'),
+    //           ),
+    //         ],
+    //       ),
+    //     );
+    //   }
+    // });
     return Scaffold(
       body: Container(
         color: Colors.black,
         child: Expanded(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(4.0),
             child: Column(
               children: <Widget>[
                 Expanded(
                   child: Image(
                     image: AssetImage("images/tariq.jpg"),
                   ),
-                  flex: 7,
+                  flex: 4,
                 ),
-                Center(
-                  child: GestureDetector(
+                // Center(
+                //   child: GestureDetector(
+                //     onTap: () {
+                //       if (go) {
+                //         Navigator.push(context,
+                //             MaterialPageRoute(builder: (context) {
+                //           return DesignsScreen(DBHelper.designs, false);
+                //         }));
+                //       } else {
+                //         Navigator.push(context,
+                //             MaterialPageRoute(builder: (context) {
+                //           return const StartScreen();
+                //         }));
+                //       }
+                //     },
+                //     child: Text(
+                //       '       Your House \n On Your Own Terms',
+                //       style: TextStyle(
+                //         fontFamily: 'Lato',
+                //         fontSize: 35.0,
+                //         foreground: Paint()..shader = linearGradient,
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                SizedBox(
+                  width: 300.0,
+                  child: AnimatedTextKit(
+                    animatedTexts: [
+                      ColorizeAnimatedText(
+                        'Press to Continue',
+                        textStyle: colorizeTextStyle,
+                        colors: colorizeColors,
+                      )
+                    ],
+                    isRepeatingAnimation: true,
                     onTap: () {
-                      if(go){
+                      if (go) {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
                               return DesignsScreen(DBHelper.designs, false);
                             }));
-                      }
-                      else {
+                      } else {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
                               return const StartScreen();
                             }));
                       }
                     },
-                    child: Text('       Your House \n On Your Own Terms',
-                        style: TextStyle(
-                          fontFamily:'Lato',
-                          fontSize: 35.0,
-                          fontWeight: FontWeight.bold,
-                          foreground: Paint()..shader = linearGradient,
-                        )),
                   ),
                 ),
+                SizedBox(height: 20.0,)
               ],
             ),
           ),

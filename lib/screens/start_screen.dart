@@ -45,8 +45,8 @@ class _StartScreenState extends State<StartScreen> {
       builder: (context) => new AlertDialog(
         backgroundColor: Colors.white,
         title: const Text('No Internet Connection'),
-        content: const Text(
-            'Please Check your Internet Connection and Try again.'),
+        content:
+            const Text('Please Check your Internet Connection and Try again.'),
         actions: <Widget>[
           TextButton(
             onPressed: () {
@@ -75,34 +75,48 @@ class _StartScreenState extends State<StartScreen> {
                 "Welcome to Tariq Al Roqi\n Your Service is Our Concern",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 27.0, foreground: Paint()..shader = linearGradient, fontFamily: "Lato"),
+                    fontSize: 27.0,
+                    color: Color(0xffF6D06E),
+                    fontFamily: "Lato"),
               ),
-              SizedBox(height: 70.0,),
-              Image.asset("images/logo.jpg",height: 250,width: 250,fit: BoxFit.fill,),
-              SizedBox(height: 80.0,),
+              SizedBox(
+                height: 70.0,
+              ),
+              Image.asset(
+                "images/logo.jpg",
+                height: 250,
+                width: 250,
+                fit: BoxFit.fill,
+              ),
+              SizedBox(
+                height: 80.0,
+              ),
               Expanded(
                 child: Column(
                   children: <Widget>[
-                    Container(width: double.infinity,
+                    Container(
+                      width: double.infinity,
                       child: SignButton(
                         path: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                            return SigninScreen();
+                            return PhoneScreen();
                           }));
                         },
-                        signText: "Commercial",
+                        signText: "Residential",
                       ),
                     ),
                     SizedBox(height: 10.0),
-                    Container(width: double.infinity,
+                    Container(
+                      width: double.infinity,
                       child: SignButton(
                           path: () async {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) {
-                              return PhoneScreen();
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return SigninScreen();
                             }));
                           },
-                          signText: "Residential"),
+                          signText: "Commercial"),
                     ),
                   ],
                 ),
@@ -114,7 +128,7 @@ class _StartScreenState extends State<StartScreen> {
                       fontSize: 19.0,
                       foreground: Paint()..shader = linearGradient),
                 ),
-                onTap: () async{
+                onTap: () async {
                   if (DBHelper.designs.length > 0)
                     Navigator.push(
                       context,

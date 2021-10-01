@@ -48,7 +48,7 @@ class HouseScreen extends StatelessWidget {
                   imageUrl: house.url,
                   placeholder: (context, url) => LoadingIndicator(
                       indicatorType: Indicator.ballClipRotateMultiple,
-                      colors: const [Constants.roqi],
+                      colors: const [Constants.roqiColor],
                       strokeWidth: 2,
                       backgroundColor: Colors.black,
                       pathBackgroundColor: Colors.black),
@@ -87,7 +87,7 @@ class HouseScreen extends StatelessWidget {
                       child: ListTile(
                         title: Icon(
                           FontAwesomeIcons.bed,
-                          color: Colors.amber,
+                          color: Constants.roqiColor,
                           size: 25.0,
                         ),
                         subtitle: Container(
@@ -110,7 +110,7 @@ class HouseScreen extends StatelessWidget {
                       child: ListTile(
                         title: Icon(
                           FontAwesomeIcons.bath,
-                          color: Colors.amber,
+                          color: Constants.roqiColor,
                           size: 25.0,
                         ),
                         subtitle: Container(
@@ -133,7 +133,7 @@ class HouseScreen extends StatelessWidget {
                       child: ListTile(
                         title: Icon(
                           FontAwesomeIcons.couch,
-                          color: Colors.amber,
+                          color: Constants.roqiColor,
                           size: 25.0,
                         ),
                         subtitle: Container(
@@ -156,7 +156,7 @@ class HouseScreen extends StatelessWidget {
                       child: ListTile(
                         title: Icon(
                           FontAwesomeIcons.userFriends,
-                          color: Colors.amber,
+                          color: Constants.roqiColor,
                           size: 25.0,
                         ),
                         subtitle: Container(
@@ -179,7 +179,7 @@ class HouseScreen extends StatelessWidget {
                       child: ListTile(
                         title: Icon(
                           FontAwesomeIcons.pizzaSlice,
-                          color: Colors.amber,
+                          color: Constants.roqiColor,
                           size: 25.0,
                         ),
                         subtitle: Container(
@@ -202,7 +202,7 @@ class HouseScreen extends StatelessWidget {
                       child: ListTile(
                         title: Icon(
                           FontAwesomeIcons.female,
-                          color: Colors.amber,
+                          color: Constants.roqiColor,
                           size: 25.0,
                         ),
                         subtitle: Container(
@@ -225,7 +225,7 @@ class HouseScreen extends StatelessWidget {
                       child: ListTile(
                         title: Icon(
                           FontAwesomeIcons.doorClosed,
-                          color: Colors.amber,
+                          color: Constants.roqiColor,
                           size: 25.0,
                         ),
                         subtitle: Container(
@@ -248,7 +248,7 @@ class HouseScreen extends StatelessWidget {
                       child: ListTile(
                         title: Icon(
                           FontAwesomeIcons.chair,
-                          color: Colors.amber,
+                          color: Constants.roqiColor,
                           size: 25.0,
                         ),
                         subtitle: Container(
@@ -296,62 +296,3 @@ class HouseScreen extends StatelessWidget {
     );
   }
 }
-
-// Padding(
-// padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-// child: Row(
-// mainAxisAlignment: MainAxisAlignment.spaceBetween,
-// children: <Widget>[
-// Icon(
-// FontAwesomeIcons.bed,
-// size: 25.0,
-// color: Colors.black,
-// ),
-// Text(
-// "${house.bedroom} Bedrooms",
-// style: TextStyle(
-// fontSize: 20.0,
-// fontWeight: FontWeight.w400,
-// color: Colors.black),
-// ),
-// Icon(
-// FontAwesomeIcons.bath,
-// size: 25.0,
-// color: Colors.black,
-// ),
-// Text(
-// "${house.bathroom} Bathrooms",
-// style: TextStyle(
-// fontSize: 20.0,
-// fontWeight: FontWeight.w400,
-// color: Colors.black),
-// ),
-// ],
-// ),
-// ),
-// Padding(
-// padding: const EdgeInsets.only(top: 5.0, bottom: 10.0),
-// child: Row(
-// mainAxisAlignment: MainAxisAlignment.spaceBetween,
-// children: <Widget>[
-// Icon(
-// FontAwesomeIcons.couch,
-// size: 25.0,
-// color: Colors.black,
-// ),
-
-// Icon(
-// FontAwesomeIcons.chair,
-// size: 25.0,
-// color: Colors.black,
-// ),
-// Text(
-// "  ${house.dining} Dining Room",
-// style: TextStyle(
-// fontSize: 20.0,
-// fontWeight: FontWeight.w400,
-// color: Colors.black),
-// ),
-// ],
-// ),
-// ),

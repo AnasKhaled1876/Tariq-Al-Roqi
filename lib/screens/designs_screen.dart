@@ -13,7 +13,6 @@ import 'package:tariq_al_raqi/screens/start_screen.dart';
 import 'filter_screen.dart';
 
 class DesignsScreen extends StatefulWidget {
-
   final List<Design> _designs;
 
   DesignsScreen(this._designs, this.guest);
@@ -30,13 +29,23 @@ class _DesignsScreenState extends State<DesignsScreen> {
   Future<bool> _onWillPop() async {
     return (await showDialog(
           context: context,
-          builder: (context) => new AlertDialog(backgroundColor: Colors.black,
-            title: const Text('Are you sure?',style: TextStyle(color: Colors.white),),
-            content: const Text('Do you want to exit an App',style: TextStyle(color: Colors.white),),
+          builder: (context) => new AlertDialog(
+            backgroundColor: Colors.black,
+            title: const Text(
+              'Are you sure?',
+              style: TextStyle(color: Colors.white),
+            ),
+            content: const Text(
+              'Do you want to exit an App',
+              style: TextStyle(color: Colors.white),
+            ),
             actions: <Widget>[
               TextButton(
                 onPressed: () => exit(0),
-                child: const Text('Ok',style: TextStyle(color: Colors.white),),
+                child: const Text(
+                  'Ok',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ],
           ),
@@ -56,67 +65,84 @@ class _DesignsScreenState extends State<DesignsScreen> {
     fillList();
     print(widget._designs.length);
 
-    return widget._designs.length>0 ? (WillPopScope(
-      onWillPop: widget.guest ? null : _onWillPop,
-      child: Scaffold(
-        backgroundColor: Constants.backgroundColor,
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              child: ListView(
-                itemExtent: 180,
-                children: designCards,
-                scrollDirection: Axis.vertical,
-              ),
-            ),
-            if (widget.guest)
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 15.0),
-                child: GestureDetector(
-                  child: Center(
-                    child: const Text(
-                      "For more options and Designs\n \nSign Up",
-                      style: TextStyle(fontSize: 23.0, color: Colors.white),
-                      textAlign: TextAlign.center,
+    return widget._designs.length > 0
+        ? (WillPopScope(
+            onWillPop: widget.guest ? null : _onWillPop,
+            child: Scaffold(
+              appBar: widget.guest
+                  ? AppBar(
+                      backgroundColor: Colors.black,
+                      leading: IconButton(
+                        icon: Icon(FontAwesomeIcons.arrowLeft),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    )
+                  : null,
+              backgroundColor: Constants.backgroundColor,
+              body: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Expanded(
+                    child: ListView(
+                      itemExtent: 180,
+                      children: designCards,
+                      scrollDirection: Axis.vertical,
                     ),
                   ),
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return const StartScreen();
-                    }));
+                  if (widget.guest)
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 15.0),
+                      child: GestureDetector(
+                        child: Center(
+                          child: const Text(
+                            "For more options and Designs\n \nSign Up",
+                            style:
+                                TextStyle(fontSize: 23.0, color: Colors.white),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const StartScreen();
+                          }));
+                        },
+                      ),
+                    )
+                ],
+              ),
+              floatingActionButton: !widget.guest
+                  ? FloatingActionButton(
+                      backgroundColor: Colors.black,
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return FilterScreen();
+                        }));
+                      },
+                      child: Icon(
+                        FontAwesomeIcons.filter,
+                        color: Constants.roqiColor,
+                      ),
+                    )
+                  : null,
+            ),
+          ))
+        : AlertDialog(
+            backgroundColor: Colors.black,
+            title: const Text('No Internet Connection'),
+            content: const Text(
+                'Please Check your Internet Connection\n and Try again.'),
+            actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    exit(0);
                   },
+                  child: const Text('Ok'),
                 ),
-              )
-          ],
-        ),
-        floatingActionButton: !widget.guest
-            ? FloatingActionButton(
-                backgroundColor: Colors.black,
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return FilterScreen();
-                  }));
-                },
-                child: Icon(
-                  FontAwesomeIcons.filter,
-                  color: Constants.roqi,
-                ),
-              )
-            : null,
-      ),
-    )) : AlertDialog(backgroundColor: Colors.black,
-        title: const Text('No Internet Connection'),
-        content: const Text('Please Check your Internet Connection\n and Try again.'),
-        actions: <Widget>[
-          TextButton(
-            onPressed: (){
-              exit(0);
-            },
-            child: const Text('Ok'),
-          ),
-        ]);
+              ]);
   }
 }
 
@@ -143,21 +169,21 @@ class HouseItem extends StatelessWidget {
           padding: EdgeInsets.all(1.0),
           child: Row(children: <Widget>[
             ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                child: CachedNetworkImage(
-                  width: 140,
-                  fit: BoxFit.fill,
-                  height: 140,
-                  imageUrl: design.url,
-                  placeholder: (context, url) => LoadingIndicator(
-                      indicatorType: Indicator.ballClipRotateMultiple,
-                      colors: const [Constants.roqi],
-                      strokeWidth: 2,
-                      backgroundColor: Colors.black,
-                      pathBackgroundColor: Colors.black),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                ),
+              borderRadius: BorderRadius.circular(8.0),
+              child: CachedNetworkImage(
+                width: 140,
+                fit: BoxFit.fill,
+                height: 140,
+                imageUrl: design.url,
+                placeholder: (context, url) => LoadingIndicator(
+                    indicatorType: Indicator.ballClipRotateMultiple,
+                    colors: const [Constants.roqiColor],
+                    strokeWidth: 2,
+                    backgroundColor: Colors.black,
+                    pathBackgroundColor: Colors.black),
+                errorWidget: (context, url, error) => Icon(Icons.error),
               ),
+            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
@@ -166,7 +192,7 @@ class HouseItem extends StatelessWidget {
                   child: Text(
                     "  AED  ${f.format(design.price)}",
                     style: TextStyle(
-                        fontSize: 28.0,
+                        fontSize: 26.0,
                         fontWeight: FontWeight.w400,
                         fontFamily: 'Lato',
                         color: Colors.white),
