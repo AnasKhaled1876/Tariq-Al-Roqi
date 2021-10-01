@@ -13,6 +13,7 @@ import 'package:tariq_al_raqi/screens/start_screen.dart';
 import 'filter_screen.dart';
 
 class DesignsScreen extends StatefulWidget {
+
   final List<Design> _designs;
 
   DesignsScreen(this._designs, this.guest);
@@ -75,7 +76,7 @@ class _DesignsScreenState extends State<DesignsScreen> {
                 child: GestureDetector(
                   child: Center(
                     child: const Text(
-                      "For more options and Designs\n Sign Up",
+                      "For more options and Designs\n \nSign Up",
                       style: TextStyle(fontSize: 23.0, color: Colors.white),
                       textAlign: TextAlign.center,
                     ),
@@ -122,7 +123,7 @@ class _DesignsScreenState extends State<DesignsScreen> {
 class HouseItem extends StatelessWidget {
   HouseItem(this.design);
 
-  final f = NumberFormat("#,###,###.0#");
+  final f = NumberFormat("#,###,###.#");
   final Design design;
 
   @override

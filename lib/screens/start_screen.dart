@@ -16,7 +16,7 @@ class StartScreen extends StatefulWidget {
 class _StartScreenState extends State<StartScreen> {
   static final Shader linearGradient = LinearGradient(
     colors: <Color>[Color(0xffF5D78B), Color(0xff856220)],
-  ).createShader(Rect.fromLTWH(0.0, 0.0, 50.0, 40.0));
+  ).createShader(Rect.fromLTWH(0.0, 0.0, 20.0, 70.0));
 
   Future<bool> _onWillPop() async {
     return (await showDialog(
@@ -70,64 +70,61 @@ class _StartScreenState extends State<StartScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              SizedBox(height: 70.0),
-              const Text(
-                "A Paradise of Your Making",
+              SizedBox(height: 100.0),
+              Text(
+                "Welcome to Tariq Al Roqi\n Your Service is Our Concern",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 30.0, color: Colors.white, fontFamily: "Lato"),
+                    fontSize: 27.0, foreground: Paint()..shader = linearGradient, fontFamily: "Lato"),
               ),
-              Spacer(),
-              Image.asset("images/logo.jpg"),
-              Spacer(),
+              SizedBox(height: 70.0,),
+              Image.asset("images/logo.jpg",height: 250,width: 250,fit: BoxFit.fill,),
+              SizedBox(height: 80.0,),
               Expanded(
-                child: Row(
+                child: Column(
                   children: <Widget>[
-                    SignButton(
-                      path: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return const SigninScreen();
-                        }));
-                      },
-                      signText: "Commercial",
-                    ),
-                    SizedBox(width: 10.0),
-                    SignButton(
-                        path: () async {
-                          if (DBHelper.designs.length > 0)
-                            Navigator.push(
-                              context,
+                    Container(width: double.infinity,
+                      child: SignButton(
+                        path: () {
+                          Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                                return DesignsScreen(
-                                    DBHelper.designs.sublist(0, 3), true);
-                              }),
-                            );
-                          else
-                            await _noInternetMessage();
+                            return SigninScreen();
+                          }));
                         },
-                        signText: "Sign as Guest"),
+                        signText: "Commercial",
+                      ),
+                    ),
+                    SizedBox(height: 10.0),
+                    Container(width: double.infinity,
+                      child: SignButton(
+                          path: () async {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) {
+                              return PhoneScreen();
+                            }));
+                          },
+                          signText: "Residential"),
+                    ),
                   ],
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 20.0, bottom: 5.0),
-                child: const Text(
-                  "Don't have an Account?",
-                  style: TextStyle(fontSize: 20.0, color: Colors.white),
                 ),
               ),
               GestureDetector(
                 child: Text(
-                  "Sign up",
+                  "Sign in as Guest",
                   style: TextStyle(
-                      fontSize: 30.0,
+                      fontSize: 19.0,
                       foreground: Paint()..shader = linearGradient),
                 ),
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return PhoneScreen();
-                  }));
+                onTap: () async{
+                  if (DBHelper.designs.length > 0)
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return DesignsScreen(
+                            DBHelper.designs.sublist(0, 3), true);
+                      }),
+                    );
+                  else
+                    await _noInternetMessage();
                 },
               ),
             ],

@@ -33,20 +33,18 @@ class SignButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ElevatedButton(
+    return ElevatedButton(
         style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30.0),
             ),
-            primary: Colors.white),
+            primary: Color(0xfff2c75c)),
         onPressed: path,
         child: Text(
           "$signText",
           style: TextStyle(fontSize: 20.0, color: Colors.black),
         ),
-      ),
-    );
+      );
   }
 }
 

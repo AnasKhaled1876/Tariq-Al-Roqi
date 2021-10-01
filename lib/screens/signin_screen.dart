@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tariq_al_raqi/db_helper.dart';
 import 'package:tariq_al_raqi/screens/designs_screen.dart';
 
@@ -11,20 +12,31 @@ class SigninScreen extends StatefulWidget {
 }
 
 class _SigninScreenState extends State<SigninScreen> {
-
   final _auth = FirebaseAuth.instance;
-  String _email="";
-  String _pass="";
+  String _email = "";
+  String _pass = "";
+  bool _wrongInfo = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        leading: IconButton(
+          icon: Icon(FontAwesomeIcons.arrowLeft),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
           children: <Widget>[
-            Spacer(),
+            SizedBox(
+              height: 200,
+            ),
             Text(
               "Sign in",
               style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.w500),
@@ -39,7 +51,7 @@ class _SigninScreenState extends State<SigninScreen> {
               keyboardType: TextInputType.emailAddress,
               maxLines: 1,
               onChanged: (value) {
-                _email=value;
+                _email = value;
               },
             ),
             SizedBox(height: 25.0),
@@ -51,11 +63,20 @@ class _SigninScreenState extends State<SigninScreen> {
               textInputAction: TextInputAction.done,
               obscureText: true,
               maxLines: 1,
-              onChanged: (value){
-               _pass=value;
+              onChanged: (value) {
+                _pass = value;
               },
             ),
-            Spacer(),
+            SizedBox(height: 20.0),
+            if (_wrongInfo)
+              Text(
+                "Wrong username and Password \n\t\t               Try again",
+                style: TextStyle(
+                    color: Colors.red, fontSize: 18.0, fontFamily: 'Lato'),
+              ),
+            SizedBox(
+              height: 150,
+            ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: Colors.black,
@@ -64,15 +85,10 @@ class _SigninScreenState extends State<SigninScreen> {
                   borderRadius: BorderRadius.circular(30.0),
                 ),
               ),
-              onPressed: () async{
-                if(_email!="" && _pass!="") {
-                  await _auth.signInWithEmailAndPassword(
-                      email: _email, password: _pass);
-                  if(_auth.currentUser != null)
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return DesignsScreen(DBHelper.designs,false);
-                    }));
-                }
+              onPressed: () async {
+                setState(() {
+                  _wrongInfo = true;
+                });
               },
               child: Text(
                 "Sign In",
@@ -90,3 +106,12 @@ class _SigninScreenState extends State<SigninScreen> {
     );
   }
 }
+// if (_email != "" && _pass != "") {
+// await _auth.signInWithEmailAndPassword(
+// email: _email, password: _pass);
+// if (_auth.currentUser != null)
+// Navigator.push(context,
+// MaterialPageRoute(builder: (context) {
+// return DesignsScreen(DBHelper.designs, false);
+// }));
+// }

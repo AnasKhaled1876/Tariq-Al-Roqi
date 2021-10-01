@@ -178,7 +178,7 @@ class HouseScreen extends StatelessWidget {
                       height: 100,
                       child: ListTile(
                         title: Icon(
-                          FontAwesomeIcons.hamburger,
+                          FontAwesomeIcons.pizzaSlice,
                           color: Colors.amber,
                           size: 25.0,
                         ),
@@ -224,14 +224,14 @@ class HouseScreen extends StatelessWidget {
                       height: 100,
                       child: ListTile(
                         title: Icon(
-                          FontAwesomeIcons.store,
+                          FontAwesomeIcons.doorClosed,
                           color: Colors.amber,
                           size: 25.0,
                         ),
                         subtitle: Container(
                           margin: EdgeInsets.only(top: 20.0),
                           child: Text(
-                            "${house.store} \nStorage Room",
+                            "${house.store} \nStorage ",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 20.0,
