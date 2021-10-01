@@ -80,7 +80,7 @@ class _StartScreenState extends State<StartScreen> {
                     fontFamily: "Lato"),
               ),
               SizedBox(
-                height: 70.0,
+                height: 30.0,
               ),
               Image.asset(
                 "images/logo.jpg",
@@ -89,7 +89,7 @@ class _StartScreenState extends State<StartScreen> {
                 fit: BoxFit.fill,
               ),
               SizedBox(
-                height: 80.0,
+                height: 50.0,
               ),
               Expanded(
                 child: Column(

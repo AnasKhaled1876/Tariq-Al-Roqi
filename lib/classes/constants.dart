@@ -71,8 +71,8 @@ class ContactButton extends StatelessWidget {
          if(buttonText=="  Call")
             await launch("tel://+971585556767");
         else {
-           var whatsappUrl = "whatsapp://send?phone=+971585556767";
-           await canLaunch(whatsappUrl) ? launch(whatsappUrl) : print("Why");
+           var whatsappUrl = "https://wa.me/971585556767";
+           await launch(whatsappUrl);
          }
       },
       child: Center(

@@ -56,7 +56,7 @@ class HouseScreen extends StatelessWidget {
                 ),
               ),
               Text(
-                "\nThe Finest Designs\n With the Best Equipment\n and The Highest Quality you can find\n from the Design to The Key\n with bank facilities and accommodation\nYour Highway to Paradise",
+                "\nThe Finest Designs\n With the Best Equipment\n and The Highest Quality \n from the Design to The Key\n with bank facilities\nYour Highway to Paradise",
                 style: TextStyle(
                     fontFamily: 'Lato',
                     wordSpacing: 2,

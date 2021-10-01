@@ -31,37 +31,6 @@ class WelcomeScreen extends StatelessWidget {
 
   Widget build(BuildContext context) {
     getData();
-    // Future.delayed(const Duration(seconds: 5), () async {
-    //   if (DBHelper.designs.length > 0) {
-    //     if (go) {
-    //       Navigator.push(context, MaterialPageRoute(builder: (context) {
-    //         return DesignsScreen(DBHelper.designs, false);
-    //       }));
-    //     } else {
-    //       Navigator.push(context, MaterialPageRoute(builder: (context) {
-    //         return const StartScreen();
-    //       }));
-    //     }
-    //   } else {
-    //     await showDialog(
-    //       context: context,
-    //       builder: (context) => new AlertDialog(
-    //         backgroundColor: Colors.white,
-    //         title: const Text('No Internet Connection'),
-    //         content: const Text(
-    //             'Please Check your Internet Connection and Try again.'),
-    //         actions: <Widget>[
-    //           TextButton(
-    //             onPressed: () {
-    //               exit(0);
-    //             },
-    //             child: const Text('Ok'),
-    //           ),
-    //         ],
-    //       ),
-    //     );
-    //   }
-    // });
     return Scaffold(
       body: Container(
         color: Colors.black,
@@ -101,33 +70,32 @@ class WelcomeScreen extends StatelessWidget {
                 //     ),
                 //   ),
                 // ),
-                SizedBox(
-                  width: 300.0,
-                  child: AnimatedTextKit(
-                    animatedTexts: [
-                      ColorizeAnimatedText(
-                        'Press to Continue',
-                        textStyle: colorizeTextStyle,
-                        colors: colorizeColors,
-                      )
-                    ],
-                    isRepeatingAnimation: true,
-                    onTap: () {
-                      if (go) {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                              return DesignsScreen(DBHelper.designs, false);
-                            }));
-                      } else {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                              return const StartScreen();
-                            }));
-                      }
-                    },
+                SizedBox(height: 60.0),
+                  Expanded(
+                    child: AnimatedTextKit(
+                      animatedTexts: [
+                        ColorizeAnimatedText(
+                          'Press to Continue',
+                          textStyle: colorizeTextStyle,
+                          colors: colorizeColors,
+                        )
+                      ],
+                      isRepeatingAnimation: true,
+                      onTap: () {
+                        if (go) {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                                return DesignsScreen(DBHelper.designs, false);
+                              }));
+                        } else {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                                return const StartScreen();
+                              }));
+                        }
+                      },
+                    ),
                   ),
-                ),
-                SizedBox(height: 20.0,)
               ],
             ),
           ),
