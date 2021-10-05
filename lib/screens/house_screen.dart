@@ -44,8 +44,8 @@ class HouseScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20.0),
                 child: CachedNetworkImage(
                   fit: BoxFit.fill,
-                  width: 350,
-                  height: 300,
+                  width: 270,
+                  height: 220,
                   imageUrl: house.url,
                   placeholder: (context, url) => LoadingIndicator(
                       indicatorType: Indicator.ballClipRotateMultiple,
@@ -60,9 +60,9 @@ class HouseScreen extends StatelessWidget {
                 "\nThe Finest Designs\n With the Best Equipment\n and The Highest Quality \n from the Design to The Key\n with bank facilities\nYour Highway to Paradise",
                 style: TextStyle(
                     fontFamily: 'Lato',
-                    wordSpacing: 2,
+                    wordSpacing: 1.7,
                     fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w600,
                     color: Colors.black),
                 textAlign: TextAlign.center,
               ),

@@ -80,7 +80,9 @@ class WelcomeScreen extends StatelessWidget {
                                 'Please Check your Internet Connection and Try again.'),
                             actions: <Widget>[
                               TextButton(
-                                onPressed: (){},
+                                onPressed: (){
+                                  Navigator.pop(context);
+                                },
                                 child: const Text('Ok'),
                               ),
                             ],

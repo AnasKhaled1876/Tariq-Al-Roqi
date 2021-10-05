@@ -35,7 +35,7 @@ class _SigninScreenState extends State<SigninScreen> {
         child: Column(
           children: <Widget>[
             SizedBox(
-              height: 200,
+              height: 150,
             ),
             Text(
               "Sign in",
@@ -75,7 +75,7 @@ class _SigninScreenState extends State<SigninScreen> {
                     color: Colors.red, fontSize: 18.0, fontFamily: 'Lato'),
               ),
             SizedBox(
-              height: 150,
+              height: 100,
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -106,12 +106,4 @@ class _SigninScreenState extends State<SigninScreen> {
     );
   }
 }
-// if (_email != "" && _pass != "") {
-// await _auth.signInWithEmailAndPassword(
-// email: _email, password: _pass);
-// if (_auth.currentUser != null)
-// Navigator.push(context,
-// MaterialPageRoute(builder: (context) {
-// return DesignsScreen(DBHelper.designs, false);
-// }));
-// }
+
