@@ -16,7 +16,7 @@ class FilterScreen extends StatefulWidget {
 
 class _FilterScreenState extends State<FilterScreen> {
 
-  final f = NumberFormat("#,###,###.0#");
+  final f = NumberFormat("#,###,###.#");
   Color _raqi = Color.fromRGBO(234, 181, 101, 1.0);
   int min = 800000;
   int max = 2000000;
@@ -24,9 +24,9 @@ class _FilterScreenState extends State<FilterScreen> {
   List<Color> bedRoomCardColor = [];
   List<Color> bathCardColor = [];
   List<Design> _designs = [];
-  var bed, bath;
+  var bed=0, bath=0;
 
-  List<Design> filteredDesigns(List<Design> designs) {
+  List<Design> filteredDesigns() {
     for (int i = 0; i < DBHelper.designs.length; i++) {
       if (min <= DBHelper.designs[i].price && max >= DBHelper.designs[i].price) {
         if(bath!=0 && bed!=0) {
@@ -47,7 +47,7 @@ class _FilterScreenState extends State<FilterScreen> {
         }
       }
     }
-    return designs;
+    return _designs;
   }
 
   void fillCardsAndColors() {
@@ -90,13 +90,12 @@ class _FilterScreenState extends State<FilterScreen> {
             size: 30.0,
           ),
         ),
-        title: Container(
-          margin: EdgeInsets.only(left: 100.0),
+        title: Center(
           child: Text(
-            "Filter",
+            "Filter",textAlign: TextAlign.left,
             style: TextStyle(
                 fontSize: 25.0,
-                fontWeight: FontWeight.w700,
+                fontWeight: FontWeight.w600,
                 color: Colors.white),
           ),
         ),
@@ -111,6 +110,7 @@ class _FilterScreenState extends State<FilterScreen> {
             margin: EdgeInsets.only(top: 30.0, left: 20.0),
             child: Text("Design",
                 style: TextStyle(
+                  fontFamily: 'Lato',
                     fontWeight: FontWeight.bold,
                     fontSize: 35.0,
                     color: Colors.black)),
@@ -119,11 +119,11 @@ class _FilterScreenState extends State<FilterScreen> {
             margin: EdgeInsets.only(left: 20.0, top: 5.0),
             child: Text(
               "your Home",
-              style: TextStyle(fontSize: 30.0, color: Colors.black),
+              style: TextStyle(fontFamily: 'Lato',fontSize: 30.0, color: Colors.black),
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 30.0),
+            margin: EdgeInsets.only(top: 30.0,right: 10.0),
             alignment: Alignment.topRight,
             child: Text(
               "${f.format(min)} - ${f.format(max)}",
@@ -309,7 +309,7 @@ class _FilterScreenState extends State<FilterScreen> {
                       setState(() {
                         if(_designs.isNotEmpty)
                           _designs.clear();
-                        filteredDesigns(DBHelper.designs);
+                        filteredDesigns();
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
                           return DesignsScreen( _designs,false);

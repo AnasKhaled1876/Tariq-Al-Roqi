@@ -1,9 +1,9 @@
+import 'dart:io';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tariq_al_raqi/db_helper.dart';
 import 'package:tariq_al_raqi/screens/start_screen.dart';
-
 import 'designs_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -30,6 +30,7 @@ class WelcomeScreen extends StatelessWidget {
   }
 
   Widget build(BuildContext context) {
+
     getData();
     return Scaffold(
       body: Container(
@@ -45,57 +46,50 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   flex: 4,
                 ),
-                // Center(
-                //   child: GestureDetector(
-                //     onTap: () {
-                //       if (go) {
-                //         Navigator.push(context,
-                //             MaterialPageRoute(builder: (context) {
-                //           return DesignsScreen(DBHelper.designs, false);
-                //         }));
-                //       } else {
-                //         Navigator.push(context,
-                //             MaterialPageRoute(builder: (context) {
-                //           return const StartScreen();
-                //         }));
-                //       }
-                //     },
-                //     child: Text(
-                //       '       Your House \n On Your Own Terms',
-                //       style: TextStyle(
-                //         fontFamily: 'Lato',
-                //         fontSize: 35.0,
-                //         foreground: Paint()..shader = linearGradient,
-                //       ),
-                //     ),
-                //   ),
-                // ),
                 SizedBox(height: 60.0),
-                  Expanded(
-                    child: AnimatedTextKit(
-                      animatedTexts: [
-                        ColorizeAnimatedText(
-                          'Press to Continue',
-                          textStyle: colorizeTextStyle,
-                          colors: colorizeColors,
-                        )
-                      ],
-                      isRepeatingAnimation: true,
-                      onTap: () {
+                Expanded(
+                  child: AnimatedTextKit(
+                    animatedTexts: [
+                      ColorizeAnimatedText(
+                        'Press to Continue',
+                        textStyle: colorizeTextStyle,
+                        colors: colorizeColors,
+                      )
+                    ],
+                    isRepeatingAnimation: true,
+                    onTap: () async {
+                      if (DBHelper.designs.isNotEmpty) {
                         if (go) {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                                return DesignsScreen(DBHelper.designs, false);
-                              }));
+                            return DesignsScreen(DBHelper.designs, false);
+                          }));
                         } else {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                                return const StartScreen();
-                              }));
+                            return const StartScreen();
+                          }));
                         }
-                      },
-                    ),
+                      } else {
+                        await showDialog(
+                          context: context,
+                          builder: (context) => new AlertDialog(
+                            backgroundColor: Colors.white,
+                            title: const Text('No Internet Connection'),
+                            content: const Text(
+                                'Please Check your Internet Connection and Try again.'),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: (){},
+                                child: const Text('Ok'),
+                              ),
+                            ],
+                          ),
+                        );
+                      }
+                    },
                   ),
+                ),
               ],
             ),
           ),

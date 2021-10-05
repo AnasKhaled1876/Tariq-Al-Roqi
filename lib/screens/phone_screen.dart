@@ -18,6 +18,23 @@ class _PhoneScreenState extends State<PhoneScreen> {
   String userCode = "";
   bool _wrongNumber = false;
 
+  Future<void> _failMessage() async {
+    await showDialog(
+      context: context,
+      builder: (context) => new AlertDialog(
+        backgroundColor: Colors.white,
+        title: const Text('No Internet Connection'),
+        content:
+        const Text('Something went wrong\n Try again please.'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {},
+            child: const Text('Ok'),
+          ),
+        ],
+      ),
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,7 +106,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
                           phoneNumber: _phone,
                           verificationCompleted: (phoneAuthCredential) async {},
                           verificationFailed: (verificationFailed) async {
-                            print("Nooooooo ${verificationFailed.message}");
+                            await _failMessage();
                           },
                           codeSent: (verificationID, resendingToken) async {
                             this.verificationID = verificationID;

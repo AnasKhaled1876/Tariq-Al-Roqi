@@ -30,14 +30,14 @@ class _DesignsScreenState extends State<DesignsScreen> {
     return (await showDialog(
           context: context,
           builder: (context) => new AlertDialog(
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.white,
             title: const Text(
               'Are you sure?',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.black),
             ),
             content: const Text(
-              'Do you want to exit an App',
-              style: TextStyle(color: Colors.white),
+              'Do you want to exit ?',
+              style: TextStyle(color: Colors.black),
             ),
             actions: <Widget>[
               TextButton(
@@ -131,14 +131,17 @@ class _DesignsScreenState extends State<DesignsScreen> {
             ),
           ))
         : AlertDialog(
-            backgroundColor: Colors.black,
-            title: const Text('No Internet Connection'),
+            backgroundColor: Colors.white,
+            title: const Text('No Results found'),
             content: const Text(
-                'Please Check your Internet Connection\n and Try again.'),
+                'Try different features.'),
             actions: <Widget>[
                 TextButton(
                   onPressed: () {
-                    exit(0);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                          return FilterScreen();
+                        }));
                   },
                   child: const Text('Ok'),
                 ),
