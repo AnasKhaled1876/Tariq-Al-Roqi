@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_indicator/loading_indicator.dart';
+import 'package:sizer/sizer.dart';
 import 'package:tariq_al_raqi/classes/constants.dart';
 import 'package:tariq_al_raqi/classes/designs.dart';
 import 'package:tariq_al_raqi/screens/house_screen.dart';
@@ -43,8 +44,15 @@ class _DesignsScreenState extends State<DesignsScreen> {
               TextButton(
                 onPressed: () => exit(0),
                 child: const Text(
-                  'Ok',
-                  style: TextStyle(color: Colors.white),
+                  'Yes',
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text(
+                  'No',
+                  style: TextStyle(color: Colors.black),
                 ),
               ),
             ],
@@ -86,20 +94,20 @@ class _DesignsScreenState extends State<DesignsScreen> {
                 children: <Widget>[
                   Expanded(
                     child: ListView(
-                      itemExtent: 180,
+                      itemExtent: 25.h,
                       children: designCards,
                       scrollDirection: Axis.vertical,
                     ),
                   ),
                   if (widget.guest)
                     Container(
-                      margin: EdgeInsets.symmetric(vertical: 15.0),
+                      margin: EdgeInsets.symmetric(vertical: 3.h),
                       child: GestureDetector(
                         child: Center(
-                          child: const Text(
+                          child: Text(
                             "For more options and Designs\n \nSign Up",
                             style:
-                                TextStyle(fontSize: 23.0, color: Colors.white),
+                                TextStyle(fontSize: 18.sp, color: Colors.white),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -174,9 +182,9 @@ class HouseItem extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
               child: CachedNetworkImage(
-                width: 140,
+                width: 43.w,
                 fit: BoxFit.fill,
-                height: 140,
+                height: 22.h,
                 imageUrl: design.url,
                 placeholder: (context, url) => LoadingIndicator(
                     indicatorType: Indicator.ballClipRotateMultiple,
@@ -195,7 +203,7 @@ class HouseItem extends StatelessWidget {
                   child: Text(
                     "  AED  ${f.format(design.price)}",
                     style: TextStyle(
-                        fontSize: 26.0,
+                        fontSize: 18.sp,
                         fontWeight: FontWeight.w400,
                         fontFamily: 'Lato',
                         color: Colors.white),
@@ -205,8 +213,8 @@ class HouseItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-                      height: 60.0,
-                      width: 90.0,
+                      height: 10.h,
+                      width: 25.w,
                       child: ListTile(
                         leading: Icon(
                           FontAwesomeIcons.bed,
@@ -214,21 +222,21 @@ class HouseItem extends StatelessWidget {
                         ),
                         title: Text("${design.bedroom}",
                             style:
-                                TextStyle(fontSize: 20.0, color: Colors.white)),
+                                TextStyle(fontSize: 13.sp, color: Colors.white)),
                       ),
                     ),
                     Container(
-                      width: 120.0,
-                      height: 60.0,
+                      width: 28.w,
+                      height: 10.5.h,
                       child: ListTile(
                         leading: Icon(
                           FontAwesomeIcons.bath,
                           color: Colors.white,
                         ),
                         title: Center(
-                          child: Text("${design.bathroom}",
+                          child: Text("${design.bathroom}",textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontSize: 20.0, color: Colors.white)),
+                                  fontSize: 15.sp, color: Colors.white)),
                         ),
                       ),
                     ),
@@ -238,21 +246,21 @@ class HouseItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Container(
-                      width: 90.0,
-                      height: 60.0,
+                      width: 25.w,
+                      height: 10.h,
                       child: ListTile(
                         leading: Icon(
                           FontAwesomeIcons.couch,
                           color: Colors.white,
                         ),
-                        title: Text("${design.majls}",
+                        title: Text("${design.living}",
                             style:
-                                TextStyle(fontSize: 20.0, color: Colors.white)),
+                                TextStyle(fontSize: 13.sp, color: Colors.white)),
                       ),
                     ),
                     Container(
-                      height: 60.0,
-                      width: 120.0,
+                      height: 10.5.h,
+                      width: 25.w,
                       child: ListTile(
                         leading: Icon(
                           FontAwesomeIcons.warehouse,
@@ -260,7 +268,7 @@ class HouseItem extends StatelessWidget {
                         ),
                         title: Text(
                           "  ${design.store}",
-                          style: TextStyle(fontSize: 20.0, color: Colors.white),
+                          style: TextStyle(fontSize: 13.sp, color: Colors.white),
                         ),
                       ),
                     ),

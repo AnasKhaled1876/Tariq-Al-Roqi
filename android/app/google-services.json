@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "554955386462-rfvufucabd15eb711fn7be89dflilelb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.AlRoqi.tariq_al_raqi",
+            "certificate_hash": "5ea3ffdfb77572f3706fcb5cc7ab1a3649415930"
+          }
+        },
+        {
           "client_id": "554955386462-9vpvb8ggsn4oglm48p6v98laja46flpk.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "554955386462-9vpvb8ggsn4oglm48p6v98laja46flpk.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "554955386462-plbqq12g0kfgla5av1eenptjr1qc2dpc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.AlRoqi.tariq-al-raqi"
+              }
             }
           ]
         }

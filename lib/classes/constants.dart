@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
@@ -62,7 +63,7 @@ class ContactButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-          minimumSize: Size(double.infinity, 40.0),
+          minimumSize: Size(double.infinity, 5.h),
           primary: Colors.black,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),
@@ -90,7 +91,7 @@ class ContactButton extends StatelessWidget {
           title: Text(
             "$buttonText",
             style: TextStyle(
-                fontSize: 20.0, fontWeight: FontWeight.w600, color: Colors.white),
+                fontSize: 13.sp, fontWeight: FontWeight.w600, color: Colors.white),
           ),
         ),
       ),

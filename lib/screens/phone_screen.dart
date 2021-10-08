@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sizer/sizer.dart';
 import 'package:tariq_al_raqi/screens/verifying_screen.dart';
 
 class PhoneScreen extends StatefulWidget {
@@ -28,7 +29,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
         const Text('Something went wrong\n Try again please.'),
         actions: <Widget>[
           TextButton(
-            onPressed: () {},
+            onPressed: () {Navigator.pop(context);},
             child: const Text('Ok'),
           ),
         ],
@@ -47,23 +48,23 @@ class _PhoneScreenState extends State<PhoneScreen> {
               },
             )),
         body: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(5.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               SizedBox(
-                height: 20.0,
+                height: 4.h,
               ),
               Text(
                 "Enter Your Mobile Number",
-                style: TextStyle(fontFamily: "Lato", fontSize: 20.0),
+                style: TextStyle(fontFamily: "Lato", fontSize: 20.sp),
                 textAlign: TextAlign.center,
               ),
               SizedBox(
-                height: 10.0,
+                height: 2.h,
               ),
               Container(
-                width: 300,
+                width: 80.w,
                 margin: EdgeInsets.only(bottom: 15.0),
                 child: TextField(
                   decoration: InputDecoration(
@@ -81,7 +82,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
               if (_wrongNumber)
                 Text(
                   "Please Enter a valid Number",
-                  style: TextStyle(color: Colors.red, fontSize: 18.0,fontFamily: 'Lato'),
+                  style: TextStyle(color: Colors.red, fontSize: 14.sp,fontFamily: 'Lato'),
                 ),
               Spacer(),
               Padding(
@@ -89,7 +90,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     primary: Colors.black,
-                    minimumSize: Size(double.infinity, 50),
+                    minimumSize: Size(double.infinity, 8.h),
                   ),
                   onPressed: () async {
                     if (_phone.toString().length != 13)
@@ -106,6 +107,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
                           phoneNumber: _phone,
                           verificationCompleted: (phoneAuthCredential) async {},
                           verificationFailed: (verificationFailed) async {
+                            print(verificationFailed.message.toString());
                             await _failMessage();
                           },
                           codeSent: (verificationID, resendingToken) async {
@@ -125,7 +127,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
                   child: Text(
                     "Next",
                     style: TextStyle(
-                      fontSize: 25.0,
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.w600,
                       fontFamily: "Lato",
                       color: Colors.white,
@@ -134,7 +136,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
                 ),
               ),
               if (loading) CircularProgressIndicator(),
-              SizedBox(height: 25.0),
+              SizedBox(height: 3.h),
             ],
           ),
         ));

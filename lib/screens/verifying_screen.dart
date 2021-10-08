@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../db_helper.dart';
 import 'designs_screen.dart';
 
@@ -68,6 +67,7 @@ class _VerifyingScreenState extends State<VerifyingScreen> {
                     final authCredential =
                         await _auth.signInWithCredential(phoneAuthCredential);
                     if (authCredential.user != null) {
+                      await DBHelper().getDesigns();
                       DBHelper().signConfirmed();
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {

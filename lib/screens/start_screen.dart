@@ -1,5 +1,7 @@
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 import 'package:tariq_al_raqi/classes/constants.dart';
 import 'package:tariq_al_raqi/db_helper.dart';
 import 'package:tariq_al_raqi/screens/designs_screen.dart';
@@ -50,7 +52,7 @@ class _StartScreenState extends State<StartScreen> {
         actions: <Widget>[
           TextButton(
             onPressed: () {
-              exit(0);
+              Navigator.pop(context);
             },
             child: const Text('Ok'),
           ),
@@ -70,26 +72,26 @@ class _StartScreenState extends State<StartScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              SizedBox(height: 100.0),
+              SizedBox(height: 5.h),
               Text(
                 "Welcome to Tariq Al Roqi\n Your Service is Our Concern",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 27.0,
+                    fontSize: 15.sp,
                     color: Color(0xffF6D06E),
                     fontFamily: "Lato"),
               ),
               SizedBox(
-                height: 30.0,
+                height: 5.h,
               ),
               Image.asset(
                 "images/logo.jpg",
-                height: 250,
-                width: 250,
+                height: 35.h,
+                width: 60.w,
                 fit: BoxFit.fill,
               ),
               SizedBox(
-                height: 50.0,
+                height: 5.h,
               ),
               Expanded(
                 child: Column(
@@ -106,7 +108,7 @@ class _StartScreenState extends State<StartScreen> {
                         signText: "Residential",
                       ),
                     ),
-                    SizedBox(height: 10.0),
+                    SizedBox(height: 4.h),
                     Container(
                       width: double.infinity,
                       child: SignButton(
@@ -125,10 +127,13 @@ class _StartScreenState extends State<StartScreen> {
                 child: Text(
                   "Sign in as Guest",
                   style: TextStyle(
-                      fontSize: 19.0,
+                      fontSize: 19.sp,
                       foreground: Paint()..shader = linearGradient),
                 ),
                 onTap: () async {
+                  final _auth = FirebaseAuth.instance;
+                  await _auth.signInAnonymously();
+                  await DBHelper().getDesigns();
                   if (DBHelper.designs.length > 0)
                     Navigator.push(
                       context,

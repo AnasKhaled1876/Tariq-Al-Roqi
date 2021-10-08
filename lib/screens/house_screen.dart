@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:loading_indicator/loading_indicator.dart';
+import 'package:sizer/sizer.dart';
 import 'package:tariq_al_raqi/classes/constants.dart';
 import 'package:tariq_al_raqi/classes/designs.dart';
 
@@ -25,11 +26,11 @@ class HouseScreen extends StatelessWidget {
           },
         ),
         title: Container(
-          margin: EdgeInsets.only(left: 35.0),
+          margin: EdgeInsets.only(left: 5.w),
           child: Text(
             "Type ${house.type}",
             style: TextStyle(
-                fontSize: 28.0,
+                fontSize: 19.sp,
                 fontFamily: "Lato",
                 fontWeight: FontWeight.w700),
           ),
@@ -38,14 +39,14 @@ class HouseScreen extends StatelessWidget {
       body: Center(
         child: Container(
           child: Padding(
-            padding: const EdgeInsets.all(7.0),
+            padding: const EdgeInsets.all(3.0),
             child: Column(children: <Widget>[
               ClipRRect(
                 borderRadius: BorderRadius.circular(20.0),
                 child: CachedNetworkImage(
                   fit: BoxFit.fill,
-                  width: 270,
-                  height: 220,
+                  width: 80.w,
+                  height: 35.h,
                   imageUrl: house.url,
                   placeholder: (context, url) => LoadingIndicator(
                       indicatorType: Indicator.ballClipRotateMultiple,
@@ -57,47 +58,47 @@ class HouseScreen extends StatelessWidget {
                 ),
               ),
               Text(
-                "\nThe Finest Designs\n With the Best Equipment\n and The Highest Quality \n from the Design to The Key\n with bank facilities\nYour Highway to Paradise",
+                "\nThe Finest Designs\n With the Best Equipment\n and The Highest Quality \n from the Design to The Key\nYour Highway to Paradise",
                 style: TextStyle(
                     fontFamily: 'Lato',
-                    wordSpacing: 1.7,
-                    fontSize: 20.0,
+                    wordSpacing: 1.3,
+                    fontSize: 15.sp,
                     fontWeight: FontWeight.w600,
                     color: Colors.black),
                 textAlign: TextAlign.center,
               ),
-              Container(
+              Container(margin: EdgeInsets.symmetric(vertical: 2.h,horizontal: 2.w),
                 alignment: Alignment.centerLeft,
                 child: Text("Description",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 25.0,
+                        fontSize: 13.sp,
                         color: Colors.black),
                     textAlign: TextAlign.start),
               ),
               Container(
                 width: double.infinity,
-                height: 100,
+                height: 20.h,
                 child: ListView(
-                  itemExtent: 150,
+                  itemExtent: 36.w,
                   scrollDirection: Axis.horizontal,
                   children: <Widget>[
                     Container(
-                      width: 80,
-                      height: 100,
+                      width: 30.w,
+                      height: 15.h,
                       child: ListTile(
                         title: Icon(
                           FontAwesomeIcons.bed,
                           color: Constants.roqiColor,
-                          size: 25.0,
+                          size: 20.0,
                         ),
                         subtitle: Container(
-                          margin: EdgeInsets.only(top: 20.0),
+                          margin: EdgeInsets.only(top: 2.5.h),
                           child: Text(
                             "${house.bedroom} \nBedroom",
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 20.0,
+                                fontSize: 14.sp,
                                 fontFamily: "Lato",
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black),
@@ -106,21 +107,20 @@ class HouseScreen extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      width: 80,
-                      height: 100,
+                      width: 30.w,
+                      height: 15.h,
                       child: ListTile(
                         title: Icon(
                           FontAwesomeIcons.bath,
                           color: Constants.roqiColor,
-                          size: 25.0,
                         ),
                         subtitle: Container(
-                          margin: EdgeInsets.only(top: 20.0),
+                          margin: EdgeInsets.only(top: 2.5.h),
                           child: Text(
                             "${house.bathroom} \nBathroom",
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 20.0,
+                                fontSize: 14.sp,
                                 fontFamily: "Lato",
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black),
@@ -129,21 +129,21 @@ class HouseScreen extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      width: 80,
-                      height: 100,
+                      width: 30.w,
+                      height: 15.h,
                       child: ListTile(
                         title: Icon(
                           FontAwesomeIcons.couch,
                           color: Constants.roqiColor,
-                          size: 25.0,
+                          size: 20.0,
                         ),
                         subtitle: Container(
-                          margin: EdgeInsets.only(top: 20.0),
+                          margin: EdgeInsets.only(top: 2.5.h),
                           child: Text(
                             "${house.living} \nLiving Room",
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 20.0,
+                                fontSize: 14.sp,
                                 fontFamily: "Lato",
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black),
@@ -152,21 +152,21 @@ class HouseScreen extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      width: 80,
-                      height: 100,
+                      width: 30.w,
+                      height: 15.h,
                       child: ListTile(
                         title: Icon(
                           FontAwesomeIcons.userFriends,
                           color: Constants.roqiColor,
-                          size: 25.0,
+                          size: 20.0,
                         ),
                         subtitle: Container(
-                          margin: EdgeInsets.only(top: 20.0),
+                          margin: EdgeInsets.only(top: 2.5.h),
                           child: Text(
                             "${house.majls} \nMajls",
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 20.0,
+                                fontSize: 14.sp,
                                 fontFamily: "Lato",
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black),
@@ -175,21 +175,21 @@ class HouseScreen extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      width: 80,
-                      height: 100,
+                      width: 30.w,
+                      height: 15.h,
                       child: ListTile(
                         title: Icon(
                           FontAwesomeIcons.pizzaSlice,
                           color: Constants.roqiColor,
-                          size: 25.0,
+                          size: 20.0,
                         ),
                         subtitle: Container(
-                          margin: EdgeInsets.only(top: 20.0),
+                          margin: EdgeInsets.only(top: 2.5.h),
                           child: Text(
                             "${house.kitchen} \nKitchen",
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 20.0,
+                                fontSize: 14.sp,
                                 fontFamily: "Lato",
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black),
@@ -198,21 +198,21 @@ class HouseScreen extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      width: 80,
-                      height: 100,
+                      width: 30.w,
+                      height: 15.h,
                       child: ListTile(
                         title: Icon(
                           FontAwesomeIcons.female,
                           color: Constants.roqiColor,
-                          size: 25.0,
+                          size: 20.0,
                         ),
                         subtitle: Container(
-                          margin: EdgeInsets.only(top: 20.0),
+                          margin: EdgeInsets.only(top: 2.5.h),
                           child: Text(
                             "${house.maid} \nMaid Room",
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 20.0,
+                                fontSize: 14.sp,
                                 fontFamily: "Lato",
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black),
@@ -221,21 +221,21 @@ class HouseScreen extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      width: 80,
-                      height: 100,
+                      width: 30.w,
+                      height: 15.h,
                       child: ListTile(
                         title: Icon(
                           FontAwesomeIcons.doorClosed,
                           color: Constants.roqiColor,
-                          size: 25.0,
+                          size: 20.0,
                         ),
                         subtitle: Container(
-                          margin: EdgeInsets.only(top: 20.0),
+                          margin: EdgeInsets.only(top: 2.5.h),
                           child: Text(
                             "${house.store} \nStorage ",
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 20.0,
+                                fontSize: 14.sp,
                                 fontFamily: "Lato",
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black),
@@ -244,21 +244,21 @@ class HouseScreen extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      width: 80,
-                      height: 100,
+                      width: 30.w,
+                      height: 15.h,
                       child: ListTile(
                         title: Icon(
                           FontAwesomeIcons.chair,
                           color: Constants.roqiColor,
-                          size: 25.0,
+                          size: 20.0,
                         ),
                         subtitle: Container(
-                          margin: EdgeInsets.only(top: 20.0),
+                          margin: EdgeInsets.only(top: 2.5.h),
                           child: Text(
                             "${house.dining} \nDining Room",
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 20.0,
+                                fontSize: 14.sp,
                                 fontFamily: "Lato",
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black),
@@ -280,7 +280,7 @@ class HouseScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      width: 10.0,
+                      width: 3.w,
                     ),
                     Expanded(
                       child: ContactButton(

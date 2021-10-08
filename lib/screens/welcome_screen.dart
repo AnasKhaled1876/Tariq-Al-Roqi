@@ -1,14 +1,15 @@
-import 'dart:io';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 import 'package:tariq_al_raqi/db_helper.dart';
 import 'package:tariq_al_raqi/screens/start_screen.dart';
 import 'designs_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   final DBHelper _dbHelper = DBHelper();
-
   static bool go = false;
   static const colorizeColors = [
     Color(0xffF6D06E),
@@ -17,20 +18,19 @@ class WelcomeScreen extends StatelessWidget {
 
   static const colorizeTextStyle = TextStyle(
     fontSize: 35.0,
-//fontFamily: 'Lato',
   );
 
-  static final Shader linearGradient = LinearGradient(
-    colors: <Color>[Color(0xffF6D06E), Color(0xff856220)],
-  ).createShader(Rect.fromLTWH(0.0, 0.0, 300.0, 70.0));
-
   void getData() async {
-    await _dbHelper.getDesigns();
+    await Firebase.initializeApp();
     go = await DBHelper().checkSigned();
+    if (go) {
+      final _auth = FirebaseAuth.instance;
+      await _auth.signInAnonymously();
+      await DBHelper().getDesigns();
+    }
   }
 
   Widget build(BuildContext context) {
-
     getData();
     return Scaffold(
       body: Container(
@@ -46,7 +46,7 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   flex: 4,
                 ),
-                SizedBox(height: 60.0),
+                SizedBox(height: 20.h),
                 Expanded(
                   child: AnimatedTextKit(
                     animatedTexts: [
@@ -58,36 +58,36 @@ class WelcomeScreen extends StatelessWidget {
                     ],
                     isRepeatingAnimation: true,
                     onTap: () async {
-                      if (DBHelper.designs.isNotEmpty) {
-                        if (go) {
+                      if (go) {
+                        if (DBHelper.designs.isNotEmpty) {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
                             return DesignsScreen(DBHelper.designs, false);
                           }));
                         } else {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return const StartScreen();
-                          }));
+                          await showDialog(
+                            context: context,
+                            builder: (context) => new AlertDialog(
+                              backgroundColor: Colors.white,
+                              title: const Text('No Internet Connection'),
+                              content: const Text(
+                                  'Please Check your Internet Connection and Try again.'),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('Ok'),
+                                ),
+                              ],
+                            ),
+                          );
                         }
                       } else {
-                        await showDialog(
-                          context: context,
-                          builder: (context) => new AlertDialog(
-                            backgroundColor: Colors.white,
-                            title: const Text('No Internet Connection'),
-                            content: const Text(
-                                'Please Check your Internet Connection and Try again.'),
-                            actions: <Widget>[
-                              TextButton(
-                                onPressed: (){
-                                  Navigator.pop(context);
-                                },
-                                child: const Text('Ok'),
-                              ),
-                            ],
-                          ),
-                        );
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return const StartScreen();
+                        }));
                       }
                     },
                   ),

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:sizer/sizer.dart';
 import 'package:tariq_al_raqi/classes/designs.dart';
 import 'package:tariq_al_raqi/classes/row_cards.dart';
 import 'package:tariq_al_raqi/db_helper.dart';
@@ -19,8 +20,8 @@ class _FilterScreenState extends State<FilterScreen> {
   final f = NumberFormat("#,###,###.#");
   Color _raqi = Color.fromRGBO(234, 181, 101, 1.0);
   int min = 800000;
-  int max = 2000000;
-  var selectedRange = RangeValues(800000, 2000000);
+  int max = 2500000;
+  var selectedRange = RangeValues(800000, 2500000);
   List<Color> bedRoomCardColor = [];
   List<Color> bathCardColor = [];
   List<Design> _designs = [];
@@ -94,7 +95,7 @@ class _FilterScreenState extends State<FilterScreen> {
           child: Text(
             "Filter",textAlign: TextAlign.left,
             style: TextStyle(
-                fontSize: 25.0,
+                fontSize: 20.sp,
                 fontWeight: FontWeight.w600,
                 color: Colors.white),
           ),
@@ -107,31 +108,31 @@ class _FilterScreenState extends State<FilterScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            margin: EdgeInsets.only(top: 30.0, left: 20.0),
+            margin: EdgeInsets.only(top: 3.h, left: 6.w),
             child: Text("Design",
                 style: TextStyle(
                   fontFamily: 'Lato',
                     fontWeight: FontWeight.bold,
-                    fontSize: 35.0,
+                    fontSize: 25.sp,
                     color: Colors.black)),
           ),
           Container(
-            margin: EdgeInsets.only(left: 20.0, top: 5.0),
+            margin: EdgeInsets.only(left: 6.w, top: 1.h),
             child: Text(
               "your Home",
-              style: TextStyle(fontFamily: 'Lato',fontSize: 30.0, color: Colors.black),
+              style: TextStyle(fontFamily: 'Lato',fontSize: 20.sp, color: Colors.black),
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 30.0,right: 10.0),
+            margin: EdgeInsets.only(top: 3.h,right: 3.w),
             alignment: Alignment.topRight,
             child: Text(
               "${f.format(min)} - ${f.format(max)}",
-              style: TextStyle(fontSize: 25.0, color: Colors.black),
+              style: TextStyle(fontSize: 20.sp, color: Colors.black),
             ),
           ),
           Container(
-            margin: EdgeInsets.all(20.0),
+            margin: EdgeInsets.symmetric(vertical: 2.h,horizontal: 2.h),
             child: SliderTheme(
               data: SliderThemeData(
                 inactiveTrackColor: Colors.grey,
@@ -148,7 +149,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     max = newValues.end.toInt();
                   });
                 },
-                max: 2000000,
+                max: 2500000,
                 min: 800000,
                 labels: RangeLabels(
                     '${selectedRange.start}', '${selectedRange.end}'),
@@ -157,7 +158,7 @@ class _FilterScreenState extends State<FilterScreen> {
           ),
           RoomLabel("Bedrooms"),
           Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: EdgeInsets.symmetric(vertical: 3.h,horizontal: 3.w),
             child: Row(
               children: <Widget>[
                 GestureDetector(
@@ -215,7 +216,7 @@ class _FilterScreenState extends State<FilterScreen> {
           ),
           RoomLabel("Bathrooms"),
           Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: EdgeInsets.symmetric(vertical: 3.h,horizontal: 3.w),
             child: Row(
               children: <Widget>[
                 GestureDetector(
@@ -272,7 +273,7 @@ class _FilterScreenState extends State<FilterScreen> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 110.0),
+            margin: EdgeInsets.only(top: 10.h),
             child: Row(
               children: <Widget>[
                 Expanded(
@@ -286,7 +287,7 @@ class _FilterScreenState extends State<FilterScreen> {
                       });
                     },
                     child: Container(
-                      height: 70.0,
+                      height: 8.h,
                       child: Card(
                         color: Colors.white,
                         elevation: 5.0,
@@ -294,7 +295,7 @@ class _FilterScreenState extends State<FilterScreen> {
                           child: Text(
                             "Show all Designs",
                             style: TextStyle(
-                                fontSize: 20.0,
+                                fontSize: 14.sp,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black),
                           ),
@@ -317,7 +318,7 @@ class _FilterScreenState extends State<FilterScreen> {
                       });
                     },
                     child: Container(
-                      height: 70.0,
+                      height: 8.h,
                       child: Card(
                         color: Colors.black,
                         elevation: 5.0,
@@ -326,7 +327,7 @@ class _FilterScreenState extends State<FilterScreen> {
                           child: Text(
                             "Filter",
                             style: TextStyle(
-                              fontSize: 20.0,
+                              fontSize: 14.sp,
                               fontWeight: FontWeight.bold,
                               color: _raqi,
                             ),

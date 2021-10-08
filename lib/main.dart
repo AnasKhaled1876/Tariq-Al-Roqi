@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:sizer/sizer.dart';
 import 'package:tariq_al_raqi/screens/welcome_screen.dart';
 
 void main() {
@@ -14,9 +15,14 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    return MaterialApp(
-      title: 'Flutter Demo',
-      home:WelcomeScreen(),
+    return Sizer(
+      builder: (BuildContext context, Orientation orientation,
+          DeviceType deviceType) {
+        return MaterialApp(
+          title: 'Flutter Demo',
+          home: WelcomeScreen(),
+        );
+      },
     );
   }
 }

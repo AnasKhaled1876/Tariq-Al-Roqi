@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tariq_al_raqi/classes/constants.dart';
@@ -8,13 +7,10 @@ import 'package:tariq_al_raqi/classes/designs.dart';
 class DBHelper {
    static List<Design> designs = [];
 
-   String dbName ='signed.db';
-
   Future<void> getDesigns() async {
-    await Firebase.initializeApp();
     final _firestore = FirebaseFirestore.instance;
-    _firestore.collection("designs").get().then((querySnapshot) {
-      querySnapshot.docs.forEach((result) async {
+    var x = await _firestore.collection("designs").get().then((querySnapshot) {
+       querySnapshot.docs.forEach((result) async {
         Design design = Design();
         design.type = result.get(Constants.TYPE);
         design.majls = result.get(Constants.MAJLS);
@@ -33,7 +29,6 @@ class DBHelper {
   }
 
   Future<dynamic> _getImages(type) async {
-
     firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
         .ref('Designs/$type.jpg');
     dynamic url = await ref.getDownloadURL();
@@ -52,13 +47,3 @@ class DBHelper {
      return sign;
    }
 }
-
-// var db = await openDatabase(dbName,version: 1,onCreate: (Database db, int version) async {
-//   // When creating the db, create the table
-//   await db.execute(
-//       'CREATE TABLE Signed (id INTEGER PRIMARY KEY, sign INTEGER)');
-// });
-// await db.transaction((txn) async {
-//   await txn.rawInsert(
-//       'INSERT INTO Signed(sign) VALUES(1)');
-// });
