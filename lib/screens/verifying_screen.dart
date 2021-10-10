@@ -67,6 +67,7 @@ class _VerifyingScreenState extends State<VerifyingScreen> {
                     final authCredential =
                         await _auth.signInWithCredential(phoneAuthCredential);
                     if (authCredential.user != null) {
+                      await Future.delayed(Duration(seconds: 2));
                       await DBHelper().getDesigns();
                       DBHelper().signConfirmed();
                       Navigator.push(context,

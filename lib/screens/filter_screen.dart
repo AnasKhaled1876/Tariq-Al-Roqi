@@ -91,7 +91,7 @@ class _FilterScreenState extends State<FilterScreen> {
             size: 30.0,
           ),
         ),
-        title: Center(
+        title: Container(margin: EdgeInsets.only(left: 5.w),
           child: Text(
             "Filter",textAlign: TextAlign.left,
             style: TextStyle(

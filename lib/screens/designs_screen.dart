@@ -71,7 +71,6 @@ class _DesignsScreenState extends State<DesignsScreen> {
   @override
   Widget build(BuildContext context) {
     fillList();
-    print(widget._designs.length);
 
     return widget._designs.length > 0
         ? (WillPopScope(

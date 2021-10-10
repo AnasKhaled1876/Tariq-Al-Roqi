@@ -77,7 +77,7 @@ class _StartScreenState extends State<StartScreen> {
                 "Welcome to Tariq Al Roqi\n Your Service is Our Concern",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 15.sp,
+                    fontSize: 18.sp,
                     color: Color(0xffF6D06E),
                     fontFamily: "Lato"),
               ),
@@ -118,7 +118,7 @@ class _StartScreenState extends State<StartScreen> {
                               return SigninScreen();
                             }));
                           },
-                          signText: "Commercial"),
+                          signText: "Commercial Account"),
                     ),
                   ],
                 ),
@@ -134,6 +134,7 @@ class _StartScreenState extends State<StartScreen> {
                   final _auth = FirebaseAuth.instance;
                   await _auth.signInAnonymously();
                   await DBHelper().getDesigns();
+                  await Future.delayed(Duration(seconds: 2));
                   if (DBHelper.designs.length > 0)
                     Navigator.push(
                       context,

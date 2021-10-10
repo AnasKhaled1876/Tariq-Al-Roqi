@@ -32,7 +32,6 @@ class DBHelper {
     firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
         .ref('Designs/$type.jpg');
     dynamic url = await ref.getDownloadURL();
-    print(url);
     return url;
   }
 

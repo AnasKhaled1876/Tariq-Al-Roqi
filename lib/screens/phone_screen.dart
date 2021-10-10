@@ -93,7 +93,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
                     minimumSize: Size(double.infinity, 8.h),
                   ),
                   onPressed: () async {
-                    if (_phone.toString().length != 13)
+                    if (_phone.toString().length < 10)
                       setState(() {
                         _wrongNumber = true;
                       });

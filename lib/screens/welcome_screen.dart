@@ -9,7 +9,6 @@ import 'package:tariq_al_raqi/screens/start_screen.dart';
 import 'designs_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  final DBHelper _dbHelper = DBHelper();
   static bool go = false;
   static const colorizeColors = [
     Color(0xffF6D06E),
@@ -51,13 +50,14 @@ class WelcomeScreen extends StatelessWidget {
                   child: AnimatedTextKit(
                     animatedTexts: [
                       ColorizeAnimatedText(
-                        'Press to Continue',
+                        'Tap to Continue',
                         textStyle: colorizeTextStyle,
                         colors: colorizeColors,
                       )
                     ],
                     isRepeatingAnimation: true,
                     onTap: () async {
+                      await Future.delayed(Duration(seconds: 2));
                       if (go) {
                         if (DBHelper.designs.isNotEmpty) {
                           Navigator.push(context,
