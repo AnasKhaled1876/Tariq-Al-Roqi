@@ -77,10 +77,10 @@ class _DesignsScreenState extends State<DesignsScreen> {
             onWillPop: widget.guest ? null : _onWillPop,
             child: Scaffold(
               appBar: widget.guest
-                  ? AppBar(
+                  ? AppBar(toolbarHeight: 7.h,
                       backgroundColor: Colors.black,
                       leading: IconButton(
-                        icon: Icon(FontAwesomeIcons.arrowLeft),
+                        icon: Icon(FontAwesomeIcons.arrowLeft,size: 40.0,),
                         onPressed: () {
                           Navigator.pop(context);
                         },
@@ -93,7 +93,7 @@ class _DesignsScreenState extends State<DesignsScreen> {
                 children: <Widget>[
                   Expanded(
                     child: ListView(
-                      itemExtent: 25.h,
+                      itemExtent: Constants.tablet ? 23.h : 25.h,
                       children: designCards,
                       scrollDirection: Axis.vertical,
                     ),
@@ -106,7 +106,7 @@ class _DesignsScreenState extends State<DesignsScreen> {
                           child: Text(
                             "For more options and Designs\n \nSign Up",
                             style:
-                                TextStyle(fontSize: 18.sp, color: Colors.white),
+                                TextStyle(fontSize: Constants.tablet ? 13.sp : 18.sp, color: Colors.white),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -176,7 +176,7 @@ class HouseItem extends StatelessWidget {
       },
       closedBuilder: (BuildContext context, void Function() action) {
         return Padding(
-          padding: EdgeInsets.all(1.0),
+          padding: Constants.tablet ? EdgeInsets.only(left: 6.w,right: 3.w) : EdgeInsets.all(1.0),
           child: Row(children: <Widget>[
             ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
@@ -202,18 +202,18 @@ class HouseItem extends StatelessWidget {
                   child: Text(
                     "  AED  ${f.format(design.price)}",
                     style: TextStyle(
-                        fontSize: 18.sp,
+                        fontSize: 15.sp,
                         fontWeight: FontWeight.w400,
                         fontFamily: 'Lato',
                         color: Colors.white),
                   ),
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Container(
-                      height: 10.h,
-                      width: 25.w,
+                      height: 9.h,
+                      width: Constants.tablet ? 18.w :25.w,
                       child: ListTile(
                         leading: Icon(
                           FontAwesomeIcons.bed,
@@ -225,8 +225,8 @@ class HouseItem extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      width: 28.w,
-                      height: 10.5.h,
+                      width: Constants.tablet ? 18.w :25.w,
+                      height: 8.h,
                       child: ListTile(
                         leading: Icon(
                           FontAwesomeIcons.bath,
@@ -235,7 +235,7 @@ class HouseItem extends StatelessWidget {
                         title: Center(
                           child: Text("${design.bathroom}",textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontSize: 15.sp, color: Colors.white)),
+                                  fontSize: 13.sp, color: Colors.white)),
                         ),
                       ),
                     ),
@@ -245,8 +245,8 @@ class HouseItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Container(
-                      width: 25.w,
-                      height: 10.h,
+                      width: Constants.tablet ? 18.w :25.w,
+                      height: 9.h,
                       child: ListTile(
                         leading: Icon(
                           FontAwesomeIcons.couch,
@@ -258,8 +258,8 @@ class HouseItem extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      height: 10.5.h,
-                      width: 25.w,
+                      height: 9.h,
+                      width: Constants.tablet ? 18.w :25.w,
                       child: ListTile(
                         leading: Icon(
                           FontAwesomeIcons.warehouse,

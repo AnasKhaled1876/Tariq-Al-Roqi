@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sizer/sizer.dart';
+import 'package:tariq_al_raqi/classes/constants.dart';
 import 'package:tariq_al_raqi/screens/verifying_screen.dart';
 
 class PhoneScreen extends StatefulWidget {
@@ -53,15 +54,15 @@ class _PhoneScreenState extends State<PhoneScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               SizedBox(
-                height: 4.h,
+                height: Constants.tablet ? 20.h : 4.h,
               ),
               Text(
                 "Enter Your Mobile Number",
-                style: TextStyle(fontFamily: "Lato", fontSize: 20.sp),
+                style: TextStyle(fontFamily: "Lato", fontSize: Constants.tablet ? 15.sp : 20.sp),
                 textAlign: TextAlign.center,
               ),
               SizedBox(
-                height: 2.h,
+                height: Constants.tablet ? 4.h :2.h,
               ),
               Container(
                 width: 80.w,
@@ -71,6 +72,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
                     border: OutlineInputBorder(),
                     hintText: "+971 55 1234567",
                   ),
+                  textAlign: TextAlign.center,
                   textInputAction: TextInputAction.done,
                   keyboardType: TextInputType.phone,
                   maxLines: 1,
@@ -82,7 +84,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
               if (_wrongNumber)
                 Text(
                   "Please Enter a valid Number",
-                  style: TextStyle(color: Colors.red, fontSize: 14.sp,fontFamily: 'Lato'),
+                  style: TextStyle(color: Colors.red, fontSize: Constants.tablet ? 10.sp :14.sp,fontFamily: 'Lato'),
                 ),
               Spacer(),
               Padding(
@@ -136,7 +138,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
                 ),
               ),
               if (loading) CircularProgressIndicator(),
-              SizedBox(height: 3.h),
+              SizedBox(height: Constants.tablet ? 5.h : 3.h ),
             ],
           ),
         ));

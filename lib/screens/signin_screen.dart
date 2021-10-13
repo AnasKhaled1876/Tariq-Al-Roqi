@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sizer/sizer.dart';
+import 'package:tariq_al_raqi/classes/constants.dart';
 import 'package:tariq_al_raqi/db_helper.dart';
 import 'package:tariq_al_raqi/screens/designs_screen.dart';
 
@@ -17,6 +18,7 @@ class _SigninScreenState extends State<SigninScreen> {
   String _email = "";
   String _pass = "";
   bool _wrongInfo = false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +51,7 @@ class _SigninScreenState extends State<SigninScreen> {
                 hintText: "Email",
               ),
               textInputAction: TextInputAction.done,
+              textAlign: TextAlign.center,
               keyboardType: TextInputType.emailAddress,
               maxLines: 1,
               onChanged: (value) {
@@ -62,6 +65,7 @@ class _SigninScreenState extends State<SigninScreen> {
                 hintText: "Password",
               ),
               textInputAction: TextInputAction.done,
+              textAlign: TextAlign.center,
               obscureText: true,
               maxLines: 1,
               onChanged: (value) {
@@ -81,7 +85,7 @@ class _SigninScreenState extends State<SigninScreen> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: Colors.black,
-                minimumSize: Size(double.infinity, 8.h),
+                minimumSize: Size(double.infinity, Constants.tablet ? 6.h :8.h),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30.0),
                 ),
@@ -94,7 +98,7 @@ class _SigninScreenState extends State<SigninScreen> {
               child: Text(
                 "Sign In",
                 style: TextStyle(
-                  fontSize: 18.sp,
+                  fontSize: Constants.tablet ? 15.sp :18.sp,
                   fontWeight: FontWeight.w600,
                   color: Colors.white,
                 ),

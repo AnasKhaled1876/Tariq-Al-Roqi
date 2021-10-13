@@ -7,9 +7,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 class Constants {
 
-
-
-  static String TYPE = "type",
+  static bool tablet=false;
+  static const String TYPE = "type",
       PRICE = "price",
       BED = "bedroom",
       BATH = "bathroom",
@@ -45,7 +44,7 @@ class SignButton extends StatelessWidget {
         onPressed: path,
         child: Text(
           "$signText",
-          style: TextStyle(fontSize: 20.0, color: Colors.black),
+          style: TextStyle(fontSize: 12.sp, color: Colors.black),
         ),
       );
   }
@@ -63,7 +62,7 @@ class ContactButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-          minimumSize: Size(double.infinity, 5.h),
+          fixedSize: Size(Constants.tablet ? 47.w : double.infinity, Constants.tablet ? 6.h : 5.h),
           primary: Colors.black,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),
@@ -77,21 +76,25 @@ class ContactButton extends StatelessWidget {
          }
       },
       child: Center(
-        child: ListTile(contentPadding: EdgeInsets.zero,
-          dense: true,
-          leading: buttonText == "  Call"
-              ? Icon(
-                  FontAwesomeIcons.phone,
-                  color: Colors.white,
-                )
-              : Icon(
-                  FontAwesomeIcons.envelope,
-                  color: Colors.white,
-                ),
-          title: Text(
-            "$buttonText",
-            style: TextStyle(
-                fontSize: 13.sp, fontWeight: FontWeight.w600, color: Colors.white),
+        child: Container(
+          width: 60.w,
+          height: 5.5.h,
+          child: ListTile(contentPadding: EdgeInsets.zero,
+            dense: true,
+            leading: buttonText == "  Call"
+                ? Icon(
+                    FontAwesomeIcons.phone,
+                    color: Colors.white,
+                  )
+                : Icon(
+                    FontAwesomeIcons.envelope,
+                    color: Colors.white,
+                  ),
+            title: Text(
+              "$buttonText",
+              style: TextStyle(
+                  fontSize: Constants.tablet ? 17.sp :13.sp, fontWeight: FontWeight.w600, color: Colors.white),
+            ),
           ),
         ),
       ),

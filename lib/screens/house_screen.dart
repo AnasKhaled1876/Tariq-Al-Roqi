@@ -19,6 +19,7 @@ class HouseScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.black,
+        toolbarHeight: Constants.tablet ? 7.h : null,
         leading: IconButton(
           icon: Icon(FontAwesomeIcons.arrowLeft),
           onPressed: () {
@@ -26,11 +27,11 @@ class HouseScreen extends StatelessWidget {
           },
         ),
         title: Container(
-          margin: EdgeInsets.only(left: 5.w),
+          margin: EdgeInsets.only(left: Constants.tablet ? 3.w :5.w),
           child: Text(
             "Type ${house.type}",
             style: TextStyle(
-                fontSize: 19.sp,
+                fontSize: Constants.tablet ? 15.sp : 19.sp,
                 fontFamily: "Lato",
                 fontWeight: FontWeight.w700),
           ),
@@ -45,8 +46,8 @@ class HouseScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20.0),
                 child: CachedNetworkImage(
                   fit: BoxFit.fill,
-                  width: 80.w,
-                  height: 35.h,
+                  width: Constants.tablet ? 85.w :80.w,
+                  height: Constants.tablet ? 35.h :35.h,
                   imageUrl: house.url,
                   placeholder: (context, url) => LoadingIndicator(
                       indicatorType: Indicator.ballClipRotateMultiple,
@@ -58,11 +59,11 @@ class HouseScreen extends StatelessWidget {
                 ),
               ),
               Text(
-                "\nThe Finest Designs\n With the Best Equipment\n and The Highest Quality \n from the Design to The Key\nYour Highway to Paradise",
+                "\nThe Finest Designs With the Best Equipment \n from the Design to The Key\nYour Highway to Paradise",
                 style: TextStyle(
                     fontFamily: 'Lato',
                     wordSpacing: 1.3,
-                    fontSize: 15.sp,
+                    fontSize: Constants.tablet ? 13.sp : 15.sp,
                     fontWeight: FontWeight.w600,
                     color: Colors.black),
                 textAlign: TextAlign.center,
@@ -274,18 +275,14 @@ class HouseScreen extends StatelessWidget {
                 margin: EdgeInsets.only(bottom: 15.0),
                 child: Row(
                   children: <Widget>[
-                    Expanded(
-                      child: ContactButton(
-                        buttonText: 'Message',
-                      ),
+                    ContactButton(
+                      buttonText: 'Message',
                     ),
                     SizedBox(
                       width: 3.w,
                     ),
-                    Expanded(
-                      child: ContactButton(
-                        buttonText: '  Call',
-                      ),
+                    ContactButton(
+                      buttonText: '  Call',
                     ),
                   ],
                 ),

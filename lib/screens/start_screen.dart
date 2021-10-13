@@ -8,6 +8,8 @@ import 'package:tariq_al_raqi/screens/designs_screen.dart';
 import 'package:tariq_al_raqi/screens/phone_screen.dart';
 import 'package:tariq_al_raqi/screens/signin_screen.dart';
 
+import 'filter_screen.dart';
+
 class StartScreen extends StatefulWidget {
   const StartScreen({Key? key}) : super(key: key);
 
@@ -63,12 +65,16 @@ class _StartScreenState extends State<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
         backgroundColor: Colors.black,
-        body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 35.0, horizontal: 8.0),
+        body: Container(
+          width: 100.w,
+          height: 100.h,
+          margin: EdgeInsets.symmetric(vertical: Constants.tablet ? 2.h :2.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
@@ -86,18 +92,18 @@ class _StartScreenState extends State<StartScreen> {
               ),
               Image.asset(
                 "images/logo.jpg",
-                height: 35.h,
-                width: 60.w,
+                height: Constants.tablet ? 40.h :35.h,
+                width: Constants.tablet ? 50.w :60.w,
                 fit: BoxFit.fill,
               ),
               SizedBox(
-                height: 5.h,
+                height: Constants.tablet ? 3.h :5.h,
               ),
               Expanded(
                 child: Column(
                   children: <Widget>[
                     Container(
-                      width: double.infinity,
+                      width: Constants.tablet ? 95.w : double.infinity,
                       child: SignButton(
                         path: () {
                           Navigator.push(context,
@@ -110,7 +116,7 @@ class _StartScreenState extends State<StartScreen> {
                     ),
                     SizedBox(height: 4.h),
                     Container(
-                      width: double.infinity,
+                      width: Constants.tablet ? 95.w : double.infinity,
                       child: SignButton(
                           path: () async {
                             Navigator.push(context,
@@ -127,7 +133,7 @@ class _StartScreenState extends State<StartScreen> {
                 child: Text(
                   "Sign in as Guest",
                   style: TextStyle(
-                      fontSize: 19.sp,
+                      fontSize: Constants.tablet ? 9.sp :19.sp,
                       foreground: Paint()..shader = linearGradient),
                 ),
                 onTap: () async {

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
+import 'package:tariq_al_raqi/classes/constants.dart';
 import 'package:tariq_al_raqi/classes/designs.dart';
 import 'package:tariq_al_raqi/classes/row_cards.dart';
 import 'package:tariq_al_raqi/db_helper.dart';
@@ -95,7 +96,7 @@ class _FilterScreenState extends State<FilterScreen> {
           child: Text(
             "Filter",textAlign: TextAlign.left,
             style: TextStyle(
-                fontSize: 20.sp,
+                fontSize: Constants.tablet ? 15.sp :20.sp,
                 fontWeight: FontWeight.w600,
                 color: Colors.white),
           ),
